@@ -1,0 +1,98 @@
+<div class="flex h-auto w-auto" >
+    <div class="mx-auto my-4">
+       
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="">
+        <ol class="relative border-l border-gray-200 dark:border-gray-700 m-6">                  
+            <li class="mb-10 ml-4">
+                <div class="absolute w-3 h-3 bg-gray-200 rounded-full -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Step One </time>
+                <mat-icon *ngIf="user?.opt_generated == 1" color="primary">check</mat-icon>
+                <i class="fas fa-check-circle text-white"></i>
+                <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Submit details for verification</h4>
+            
+            </li>
+            <li class="mb-10 ml-4">
+                <div class="absolute w-3 h-3 bg-gray-200 rounded-full -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Step Two</time>
+                <mat-icon *ngIf="user?.opt_code && user?.opt_generated == 1" color="primary">check</mat-icon>
+                <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Verify OTP</h4>
+            </li>
+            <li class="ml-4">
+                <div class="absolute w-3 h-3 bg-gray-200 rounded-full -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
+                <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Step Three</time>
+                <mat-icon  *ngIf="user?.opt_code && user?.opt_generated == 1 && user?.submit_pmex_status" [routerLink]="'./detail-profile'"  color="primary">check</mat-icon>
+                <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Submit Complete Details</h4>
+            </li>
+        </ol>
+    </div>  
+
+    <table class="w-auto text-sm text-left text-gray-500 dark:text-gray-400" style="width:100%; padding-top: 1em;  padding-bottom: 1em;">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <tr>
+    <th scope="col" class="px-6 py-3 xs:max-w-sm" >
+        
+    </th>
+    <th scope="col" class="px-6 py-3">
+    Name
+    </th>
+    <th scope="col" class="px-6 py-3">
+    Mobile
+    </th>   
+   
+    </tr>
+    </thead>
+
+    <tbody>
+        <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+            <td class="xs:px-2 sm:px-2 md:px-2 md:px-2 lg:px-6 py-4 ">
+                <div class="grid grid-cols-1 " style="display: flex !important; ">
+                    <a *ngIf="user?.opt_generated != 1" [routerLink]="'./pmexregistration'" class="bg-ktgreen hover:bg-green-700 text-white text-center py-2 px-4 rounded">
+                        PMEX Registration
+                      </a>                 
+                       <!-- <button *ngIf="user?.opt_generated != 1" [routerLink]="'./pmexregistration'" mat-button  class="  bg-ktgreen hover:bg-green-700 text-white   rounded-full">
+                                 PMEX Registration
+                            </button>       -->
+                    <button *ngIf="user?.opt_generated == 1 && user?.opt_code == null" (click)="openDialog()" mat-button  class="bg-ktgreen hover:bg-green-700 text-white  py-2 px-4 rounded-full">
+                        Verify OTP 
+                    </button>   
+                    <div>
+                            <span class=" font-bold py-2 px-4 align-middle" *ngIf="user?.opt_code && user?.opt_generated == 1" >OTP Verified</span>                                                   
+                            <br>
+                            <span class=" font-bold py-2 px-4 align-middle" *ngIf="user?.submit_pmex_status" > Details have been sbumited to PMEX</span>                                                   
+                        <br>
+                            <button *ngIf="user?.opt_code && user?.opt_generated == 1 && !user?.submit_pmex_status" [routerLink]="'./detail-profile'" mat-button  class="bg-ktgreen hover:bg-green-700 text-white  py-2 px-4 rounded-full">
+                                Submit Profile Details
+                            </button>
+                          
+                     </div>  
+                </div>
+            </td>
+            <td class="px-6 py-4">
+                {{user?.name}}
+            </td>
+            <td class="py-4">
+                {{user?.mobile}}
+            </td>
+           
+           
+        </tr>
+        <tr class="border-b dark:bg-gray-800 dark:border-gray-700 odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700">
+           
+            <td class="px-6 py-4" colspan="3">
+                <span style="color:red">*This facility is not available for existing clients</span><br>
+
+                    *Note OTP will be generated after verification from NCCPL. This process will take about 24 to 48 hours.<br>
+                    *Disclaimer In case your data is not verified successfully by NCCPL, OTP will not generate.
+            </td>
+                      
+           
+        </tr>
+        </tbody>
+
+    </table>
+      
+    </div>
+    
+    </div>
+  </div>  <br/> <br/> <br/>

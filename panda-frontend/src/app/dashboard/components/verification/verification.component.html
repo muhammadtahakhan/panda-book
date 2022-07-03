@@ -1,0 +1,50 @@
+<div class="flex h-auto">
+    <div class="mx-auto my-4">
+
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+
+    <mat-card >
+      <!-- <mat-card-title class="bg-green">Registration and OTP verification</mat-card-title> -->
+      <mat-card-content>
+          <form  [formGroup]="rForm" (submit)="onSubmit()" autocomplete="off">
+            <div class=" grid grid-cols-1  gap-4">
+
+
+                <div>
+                    <mat-form-field appearance="standard">
+                        <mat-label>UIN </mat-label>
+                        <input readonly matInput  placeholder="Enter your UIN" formControlName="UIN" >
+                        <mat-error *ngIf="form_error('UIN', 'required')">UIN is <strong>required</strong></mat-error>
+                        <!-- <mat-hint>Enter UIN Number</mat-hint> -->
+                    </mat-form-field>
+                </div>
+
+              <div>
+                <mat-form-field appearance="standard">
+                    <mat-label>OTP Number </mat-label>
+                    <input  matInput  placeholder="Enter your OPT Number"  formControlName="OTP">
+                    <mat-error *ngIf="form_error('OTP', 'required')">OTP is <strong>required</strong></mat-error>
+                    <mat-hint>OTP Number (received on Mobile)</mat-hint>
+                </mat-form-field>
+            </div>
+
+
+            </div>
+
+            <div class="grid grid-cols-1 lg:m-12 xs:m-4  content-center">
+              <button [disabled]="!rForm.valid"  type="submit"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                Verify
+              </button>
+
+            </div>
+            <small class="self-end hover:cursor-pointer" (click)="regenerateOtp(rForm.value)">Regenerate OTP</small>
+          </form>
+      </mat-card-content>
+  </mat-card>
+
+
+    </div>
+
+    </div>
+  </div>

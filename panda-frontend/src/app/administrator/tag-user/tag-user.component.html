@@ -1,0 +1,100 @@
+<div class="flex h-auto">
+  <div class="mx-auto my-4">
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+
+  <mat-card >
+    <mat-card-title class="bg-green">UKN Registration</mat-card-title>
+    <mat-card-content style="display: flex; justify-content: center; align-items: center;">
+        <form  [formGroup]="rForm" autocomplete="off">
+          <div class=" grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-2  xs:gap-0 gap-4">
+
+                <div>
+                  <mat-form-field appearance="standard">
+                      <mat-label>CNIC </mat-label>
+                      <input maxlength="30" matInput  placeholder="Enter your CNIC"  formControlName="uin">
+                      <mat-error *ngIf="form_error('uin', 'required')">CNIC is <strong>required</strong></mat-error>
+                      <mat-error *ngIf="form_error('uin', 'pattern')">Special Character not allowed </mat-error>
+                      <!-- <mat-hint>CNIC</mat-hint> -->
+                  </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="standard">
+                    <mat-label>ukn </mat-label>
+                    <input maxlength="30" matInput  placeholder="Enter your CNIC"  formControlName="ukn">
+                    <mat-error *ngIf="form_error('ukn', 'required')">ukn is <strong>required</strong></mat-error>
+                    <mat-error *ngIf="form_error('ukn', 'pattern')">Special Character not allowed </mat-error>
+                    <!-- <mat-hint>CNIC</mat-hint> -->
+                </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="standard">
+                  <mat-label>OTP </mat-label>
+                  <input maxlength="30" matInput  placeholder="Enter your OTP"  formControlName="otp">
+                  <mat-error *ngIf="form_error('otp', 'required')">OTP is <strong>required</strong></mat-error>
+                  <mat-error *ngIf="form_error('otp', 'pattern')">Special Character not allowed </mat-error>
+                  <!-- <mat-hint>CNIC</mat-hint> -->
+              </mat-form-field>
+          </div>
+
+
+
+</div>
+
+<div class="grid grid-cols-1 lg:m-12 xs:m-4 ">
+  <label>proof of Tag Document</label>
+  <button  style="height: 40px;" *ngIf="!rForm.get('tag_document')?.value" (click)="TAG_DOCUMENT.click()"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+    Select proof of TAG_DOCUMENT
+  </button>
+
+  <div  *ngIf="rForm.get('tag_document')?.value" class="flex flex-wrap justify-center relative">
+    <img style="height: 100px !important" class="max-w-full h-auto rounded-lg" [src]="'data:image/png;base64,'+rForm.get('tag_document')?.value" />
+    <mat-icon (click)="rForm.get('tag_document')?.setValue(null)" style="color:green"  class="absolute top-0 " >close</mat-icon>
+</div>
+
+</div>
+
+
+<div style="display: none;">
+
+      <input  type="file" accept="image/*" multiple  #TAG_DOCUMENT (change)="handleImageUpload($event,'tag_document')" >
+</div>
+
+
+
+
+
+
+          <div class="grid grid-cols-1 lg:m-12 xs:m-4  content-center">
+
+
+            <button [disabled]="!rForm.valid" (click)="onSubmit()" type="submit"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+              Submit
+            </button>
+            <br>
+            <button [disabled]="!rForm.valid" (click)="openDialogTag()" type="submit"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 my-1 px-4 rounded-full">
+              Tag this UKN
+            </button>
+
+            <button [disabled]="!rForm.valid" (click)="openDialogResendOtp()" type="submit"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 my-1 px-4 rounded-full">
+              Send OTP
+            </button>
+
+            <button [disabled]="!rForm.valid" (click)="openDialogRegenerate()" type="submit"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 my-1 px-4 rounded-full">
+              Regenerate OTP
+            </button>
+
+          </div>
+
+
+
+        </form>
+    </mat-card-content>
+</mat-card>
+
+
+  </div>
+
+  </div>
+</div>

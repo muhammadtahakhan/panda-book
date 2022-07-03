@@ -1,0 +1,675 @@
+<div class="flex h-auto">
+    <div class="mx-auto my-4">
+
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+
+    <mat-card >
+      <mat-card-title class="bg-green">Detailed Profile</mat-card-title>
+      <mat-card-content style="display: flex; justify-content: center; align-items: center;">
+          <form  [formGroup]="rForm" autocomplete="off">
+            <div class=" grid xs:grid-cols-1 sm:grid-cols-3 lg:grid-cols-3  xs:gap-0 gap-4">
+                                <div>
+                                <mat-form-field appearance="standard">
+                                <mat-label>Identity Type:</mat-label>
+                                <mat-select formControlName="IDENTIFICATION_TYPE" >
+                                <mat-option *ngFor="let item of Identity" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="form_error('IDENTIFICATION_TYPE', 'required')">Identity Type is <strong>required</strong></mat-error>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                                </mat-form-field>
+                                </div>
+
+                                <div>
+                                <mat-form-field appearance="standard">
+                                <mat-label>Residential Status: </mat-label>
+                                <mat-select formControlName="RESIDENTIAL_STATUS">
+                                <mat-option *ngFor="let item of residential_status" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="form_error('RESIDENTIAL_STATUS', 'required')">Residential Status is <strong>required</strong></mat-error>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                                </mat-form-field>
+                                </div>
+                                <div>
+                                <mat-form-field appearance="standard">
+                                <mat-label>CNIC </mat-label>
+                                <input readonly="" maxlength="30" matInput  placeholder="Enter your UIN"  formControlName="UIN">
+                                <mat-error *ngIf="form_error('UIN', 'required')">UIN is <strong>required</strong></mat-error>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                                </mat-form-field>
+                                </div>
+                                <div>
+                                <mat-form-field appearance="standard">
+                                <mat-label>Name as per CNIC </mat-label>
+                                <input readonly="" maxlength="30" matInput  placeholder="Enter your Name"  formControlName="NAME">
+                                <mat-error *ngIf="form_error('NAME', 'required')">Name is <strong>required</strong></mat-error>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                                </mat-form-field>
+                                </div>
+                                <div>
+                                <mat-form-field appearance="standard">
+                                <mat-label>Mobile Number </mat-label>
+                                <input readonly="" maxlength="11" matInput  placeholder="Enter your Mobile Number"  formControlName="MOBILE_NO">
+                                <mat-error *ngIf="form_error('MOBILE_NO', 'required')">Mobile Number is <strong>required</strong></mat-error>
+                                <mat-hint>03xxxxxxxxx</mat-hint>
+                                </mat-form-field>
+                                </div>
+                                <div >
+                                <mat-form-field appearance="standard">
+                                <mat-label>Issue Date </mat-label>
+                                <input readonly="" matInput [matDatepicker]="picker" formControlName="ISSUE_DATE">
+                                <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                                <mat-error *ngIf="form_error('ISSUE_DATE', 'required')">Issue Date is <strong>required</strong></mat-error>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                                </mat-form-field>
+
+                                </div>
+                                <div>
+                                <mat-form-field appearance="standard">
+                                <mat-label>Email </mat-label>
+                                <input readonly="" matInput  placeholder="Enter your Email"  formControlName="EMAIL">
+                                <mat-error *ngIf="form_error('EMAIL', 'required')">EMAIL is <strong>required</strong></mat-error>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                                </mat-form-field>
+                                </div>
+                                <div>
+                                <mat-form-field appearance="standard">
+                                <mat-label>Relationship </mat-label>
+                                <mat-select  formControlName="RELATIONSHIP">
+                                <mat-option *ngFor="let item of relationship"  [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="form_error('RELATIONSHIP', 'required')">RELATIONSHIP is <strong>required</strong></mat-error>
+                                <mat-error *ngIf="form_error('RELATIONSHIP', 'pattern')">Special Character not allowed </mat-error>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                                </mat-form-field>
+                                </div>
+
+                                <div>
+                                <mat-form-field appearance="standard">
+                                <mat-label>IBAN No </mat-label>
+                                <input readonly="" matInput maxlength="30"   formControlName="IBAN_NO">
+                                <mat-error *ngIf="form_error('IBAN_NO', 'required')">IBAN NO is <strong>required</strong></mat-error>
+                                <mat-error *ngIf="form_error('IBAN_NO', 'pattern')">Special Character not allowed </mat-error>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                                </mat-form-field>
+                                </div>
+                                <div>
+                                <mat-form-field appearance="standard">
+                                <mat-label>Relative UIN </mat-label>
+                                <input readonly="" matInput maxlength="30"  placeholder="Enter your Relative UIN"  formControlName="Relative_UIN">
+                                <mat-error *ngIf="form_error('Relative_UIN', 'required')">Relative UIN is <strong>required</strong></mat-error>
+                                <mat-error *ngIf="form_error('Relative_UIN', 'pattern')">Special Character not allowed </mat-error>
+                                <!-- <mat-hint>Hint</mat-hint> -->
+                                </mat-form-field>
+                                </div>
+
+            </div>
+
+            <div>
+                <mat-divider></mat-divider>
+            </div>
+            <div class=" grid xs:grid-cols-1 sm:grid-cols-3 lg:grid-cols-3  xs:gap-0 gap-4">
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Account Type </mat-label>
+                            <mat-select required formControlName="account_type" >
+                                <mat-option *ngFor="let item of account_type" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form_error('account_type', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('account_type', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Salutation </mat-label>
+                            <mat-select required formControlName="salutation" >
+                                <mat-option *ngFor="let item of salutation" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form_error('salutation', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('salutation', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Father / husband Name </mat-label>
+                            <input required matInput maxlength="30"   formControlName="father_husband_name">
+                            <mat-error *ngIf="form_error('father_husband_name', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('father_husband_name', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Nationality </mat-label>
+                            <mat-select required formControlName="nationality" >
+                                <mat-option>
+                                    <ngx-mat-select-search placeholderLabel="Find..." noEntriesFoundLabel="no matching found" [formControl]="nationalityFilterCtrl" #singleSelect></ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option *ngFor="let item of filteredNationality" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form_error('nationality', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('nationality', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Material status</mat-label>
+                            <mat-select required formControlName="material_status" >
+                                <mat-option *ngFor="let item of material_status" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form_error('material_status', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('material_status', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Date of expiry</mat-label>
+                            <input  required matInput [matDatepicker]="pickerdoe"  formControlName="date_of_expiry">
+                            <mat-datepicker-toggle matSuffix [for]="pickerdoe" ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerdoe></mat-datepicker>
+                            <mat-error *ngIf="form_error('date_of_expiry', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('date_of_expiry', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Lifetime </mat-label>
+                            <input matInput maxlength="30"   formControlName="lifetime">
+                            <mat-error *ngIf="form_error('lifetime', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('lifetime', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Date of birth </mat-label>
+                            <input  required matInput [matDatepicker]="pickerdob"  formControlName="date_of_birth">
+                            <mat-datepicker-toggle matSuffix [for]="pickerdob" ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerdob></mat-datepicker>
+
+                            <mat-error *ngIf="form_error('date_of_birth', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('date_of_birth', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field style="margin-bottom: -4px !important;" appearance="standard">
+                            <mat-label>Mailing address </mat-label>
+                            <input required  matInput maxlength="30"   formControlName="mailing_address">
+                            <mat-error *ngIf="form_error('mailing_address', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('mailing_address', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                        <div>
+                            <button matTooltip="copy to all related fields" (click)="sameAsField($event, 'permanent_address', 'mailing_address')" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                                <mat-icon>file_copy</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <mat-form-field style="margin-bottom: -4px !important;" appearance="standard">
+                            <mat-label>Country</mat-label>
+                            <mat-select required formControlName="country" >
+                                <mat-option>
+                                    <ngx-mat-select-search placeholderLabel="Find..." noEntriesFoundLabel="no matching found" [formControl]="countryFilterCtrl" #singleSelect></ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option *ngFor="let item of filteredCountry" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form_error('country', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('country', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                        <div>
+                            <button matTooltip="copy to all related fields" (click)="sameAsField($event, 'permanent_country', 'country')" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                                <mat-icon>file_copy</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Province </mat-label>
+                            <mat-select required formControlName="province" >
+                                <mat-option *ngFor="let item of province" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form_error('province', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('province', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                        <div>
+                            <button matTooltip="copy to all related fields" (click)="sameAsField($event, 'other_province_state', 'province'); sameAsField($event, 'permanent_province', 'province'); sameAsField($event, 'permanent_other_province', 'province')" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                                <mat-icon>file_copy</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <mat-form-field style="margin-bottom: -4px !important;" appearance="standard">
+                            <mat-label>City town village</mat-label>
+                            <mat-select required formControlName="city_town_village" >
+                                <mat-option>
+                                    <ngx-mat-select-search placeholderLabel="Find..." noEntriesFoundLabel="no matching found" [formControl]="cityFilterCtrl" #singleSelect></ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option *ngFor="let item of filteredCity" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form_error('city_town_village', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('city_town_village', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                        <div>
+                            <button matTooltip="copy to all related fields" (click)="sameAsField($event, 'other_city_town_village', 'city_town_village'); sameAsField($event, 'permanent_city_town', 'city_town_village'); sameAsField($event, 'permanent_other_city_town', 'city_town_village')" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                                <mat-icon>file_copy</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Other province state </mat-label>
+                            <mat-select  formControlName="other_province_state" >
+                                <mat-option  [value]="null"></mat-option>
+                                <mat-option *ngFor="let item of province" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form_error('other_province_state', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('other_province_state', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Other city town village</mat-label>
+                            <mat-select formControlName="other_city_town_village" >
+                                <mat-option>
+                                    <ngx-mat-select-search placeholderLabel="Find..." noEntriesFoundLabel="no matching found" [formControl]="otherCityFilterCtrl" #singleSelect></ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option  [value]="null"></mat-option>
+                                <mat-option *ngFor="let item of filteredOtherCity" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form_error('other_city_town_village', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('other_city_town_village', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field style="margin-bottom: -4px !important;" appearance="standard">
+                            <mat-label>Phone office </mat-label>
+                            <input  matInput maxlength="30"   formControlName="phone_office">
+                            <mat-error *ngIf="form_error('phone_office', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('phone_office', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                        <div>
+                            <button matTooltip="copy to all related fields" (click)="sameAsField($event, 'phone_residence', 'phone_office');sameAsField($event, 'permanent_phone_office', 'phone_office');sameAsField($event, 'permanent_phone_residence', 'phone_office');" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                                <mat-icon>file_copy</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Phone residence</mat-label>
+                            <input  matInput maxlength="30"   formControlName="phone_residence">
+                            <mat-error *ngIf="form_error('phone_residence', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('phone_residence', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field style="margin-bottom: -4px !important;" appearance="standard">
+                            <mat-label>Fax</mat-label>
+                            <input required matInput maxlength="30" formControlName="fax">
+                            <mat-error *ngIf="form_error('fax', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('fax', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                        <div>
+                            <button matTooltip="copy to all related fields" (click)="sameAsField($event, 'permanent_fax', 'fax');" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+                                <mat-icon>file_copy</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <mat-form-field  appearance="standard">
+                            <mat-label>Permanent address </mat-label>
+                            <input required matInput maxlength="30"   formControlName="permanent_address">
+                            <mat-error *ngIf="form_error('permanent_address', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('permanent_address', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+
+                        <br />
+                        <!-- <section class="example-section">
+                            <mat-checkbox class="example-margin">Check me!</mat-checkbox>
+                          </section> -->
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Permanent country</mat-label>
+                            <mat-select required formControlName="permanent_country" >
+                                <mat-option>
+                                    <ngx-mat-select-search placeholderLabel="Find..." noEntriesFoundLabel="no matching found" [formControl]="permanentCountryFilterCtrl" #singleSelect></ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option *ngFor="let item of filteredPermanentCountry" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form_error('permanent_country', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('permanent_country', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Permanent province</mat-label>
+                            <mat-select required formControlName="permanent_province" >
+                                <mat-option *ngFor="let item of province" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form_error('permanent_province', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('permanent_province', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Permanent city town</mat-label>
+                            <mat-select  required formControlName="permanent_city_town" >
+                                <mat-option>
+                                    <ngx-mat-select-search placeholderLabel="Find..." noEntriesFoundLabel="no matching found" [formControl]="permanentCityFilterCtrl" #singleSelect></ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option *ngFor="let item of filteredPermanentCity" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form_error('permanent_city_town', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('permanent_city_town', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Permanent other province </mat-label>
+                            <mat-select formControlName="permanent_other_province" >
+                                <mat-option  [value]="null"></mat-option>
+                                <mat-option *ngFor="let item of province" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form_error('permanent_other_province', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('permanent_other_province', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Permanent other city town</mat-label>
+                            <mat-select formControlName="permanent_other_city_town" >
+                                <mat-option>
+                                    <ngx-mat-select-search placeholderLabel="Find..." noEntriesFoundLabel="no matching found" [formControl]="permanentOtherCityFilterCtrl" #singleSelect></ngx-mat-select-search>
+                                </mat-option>
+                                <mat-option  [value]="null"></mat-option>
+                                <mat-option *ngFor="let item of filteredOtherPermanentCity" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+
+                            </mat-select>
+                            <mat-error *ngIf="form_error('permanent_other_city_town', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('permanent_other_city_town', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Permanent phone office </mat-label>
+                            <input  matInput maxlength="30"   formControlName="permanent_phone_office">
+                            <mat-error *ngIf="form_error('permanent_phone_office', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('permanent_phone_office', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Permanent phone residence</mat-label>
+                            <input  matInput maxlength="30"   formControlName="permanent_phone_residence">
+                            <mat-error *ngIf="form_error('permanent_phone_residence', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('permanent_phone_residence', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Permanent Fax</mat-label>
+                            <input  matInput maxlength="30"   formControlName="permanent_fax">
+                            <mat-error *ngIf="form_error('permanent_fax', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('permanent_fax', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Gross annual income </mat-label>
+                            <mat-select formControlName="gross_annual_income" >
+                                <mat-option *ngFor="let item of annual_income" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form_error('gross_annual_income', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('gross_annual_income', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Source income </mat-label>
+                            <input required matInput maxlength="30"   formControlName="source_income">
+                            <mat-error *ngIf="form_error('source_income', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('source_income', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Shareholder Category </mat-label>
+                            <input  matInput maxlength="30"   formControlName="shareholder_category">
+                            <mat-error *ngIf="form_error('shareholder_category', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('shareholder_category', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Occupation</mat-label>
+                            <mat-select required formControlName="occupation" >
+                                <mat-option>
+                                    <ngx-mat-select-search placeholderLabel="Find..." noEntriesFoundLabel="no matching found" [formControl]="occupationFilterCtrl" #singleSelect></ngx-mat-select-search>
+                                  </mat-option>
+                                <mat-option *ngFor="let item of filteredOccupation" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form_error('occupation', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('occupation', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Other Occupation </mat-label>
+                            <mat-select formControlName="other_occupation" >
+                                <mat-option>
+                                    <ngx-mat-select-search placeholderLabel="Find..." noEntriesFoundLabel="no matching found" [formControl]="otherOccupationFilterCtrl" #singleSelect></ngx-mat-select-search>
+                                  </mat-option>
+                                <mat-option  [value]="null"></mat-option>
+                                    <mat-option *ngFor="let item of filteredOtherOccupation" [value]="item.value">
+                                {{item.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="form_error('other_occupation', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('other_occupation', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Job Title </mat-label>
+                            <input matInput maxlength="30"   formControlName="job_title">
+                            <mat-error *ngIf="form_error('job_title', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('job_title', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Department </mat-label>
+                            <input matInput maxlength="30"   formControlName="department">
+                            <mat-error *ngIf="form_error('department', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('department', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Employer name </mat-label>
+                            <input  matInput maxlength="30"   formControlName="employer_name">
+                            <mat-error *ngIf="form_error('employer_name', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('employer_name', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Employer address</mat-label>
+                            <input matInput maxlength="30"   formControlName="employer_address">
+                            <mat-error *ngIf="form_error('employer_address', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('employer_address', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Relative Name</mat-label>
+                            <input required  matInput maxlength="30"   formControlName="relative_name">
+                            <mat-error *ngIf="form_error('relative_name', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('relative_name', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field appearance="standard">
+                            <mat-label>Bank Name</mat-label>
+                            <input required  matInput maxlength="30"   formControlName="bank_name">
+                            <mat-error *ngIf="form_error('bank_name', 'required')">This field is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('bank_name', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>Hint</mat-hint> -->
+                        </mat-form-field>
+                    </div>
+
+
+                    <div class="grid grid-cols-1 lg:m-12 xs:m-4 ">
+                        <label>CNIC FRONT</label>
+                        <button style="height: 40px;" *ngIf="!rForm.get('CNIC_FRONT')?.value" (click)="CNIC_FRONT.click()"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                            CNIC_FRONT*
+                        </button>
+                        <div  *ngIf="rForm.get('CNIC_FRONT')?.value" class="flex flex-wrap justify-center relative">
+                            <img style="height: 100px !important" class="max-w-full h-auto rounded-lg" [src]="'data:image/png;base64,'+rForm.get('CNIC_FRONT')?.value" />
+                            <!-- <button class="absolute top-0">Button</button> -->
+                            <mat-icon (click)="rForm.get('CNIC_FRONT')?.setValue(null)" style="color:black"  class="absolute top-0 " >close</mat-icon>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:m-12 xs:m-4 ">
+                        <label>CNIC BACK</label>
+                        <button style="height: 40px;" *ngIf="!rForm.get('CNIC_BACK')?.value" (click)="CNIC_BACK.click()"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                            CNIC_BACK*
+                        </button>
+                        <div *ngIf="rForm.get('CNIC_BACK')?.value" class="flex flex-wrap justify-center relative">
+                            <img style="height: 100px !important" class="max-w-full h-auto rounded-lg" [src]="'data:image/png;base64,'+rForm.get('CNIC_BACK')?.value" />
+                            <mat-icon (click)="rForm.get('CNIC_BACK')?.setValue(null)" style="color:black"  class="absolute top-0 " >close</mat-icon>
+                        </div>
+
+                    </div>
+                    <div class="grid grid-cols-1 lg:m-12 xs:m-4 ">
+                        <label>ADD PROOF</label>
+                        <button style="height: 40px;" *ngIf="!rForm.get('ADD_PROOF')?.value" (click)="ADD_PROOF.click()"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                            Address Proof
+                        </button>
+                        <div *ngIf="rForm.get('ADD_PROOF')?.value" class="flex flex-wrap justify-center relative">
+                            <img style="height: 100px !important" class="max-w-full h-auto rounded-lg" [src]="'data:image/png;base64,'+rForm.get('ADD_PROOF')?.value" />
+                            <mat-icon (click)="rForm.get('ADD_PROOF')?.setValue(null)" style="color:black"  class="absolute top-0 " >close</mat-icon>
+                        </div>
+
+                    </div>
+                    <div class="grid grid-cols-1 lg:m-12 xs:m-4 ">
+                        <label>EMP ADD PROOF</label>
+                        <button style="height: 40px;" *ngIf="!rForm.get('EMP_ADD_PROOF')?.value" (click)="EMP_ADD_PROOF.click()"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                            Employer Address Proof
+                        </button>
+                        <div *ngIf="rForm.get('EMP_ADD_PROOF')?.value" class="flex flex-wrap justify-center relative">
+                            <img style="height: 100px !important" class="max-w-full h-auto rounded-lg" [src]="'data:image/png;base64,'+rForm.get('EMP_ADD_PROOF')?.value" />
+                            <mat-icon (click)="rForm.get('EMP_ADD_PROOF')?.setValue(null)" style="color:black"  class="absolute top-0 " >close</mat-icon>
+                        </div>
+
+                    </div>
+
+                    <div style="display: none;">
+
+                        <input  type="file" accept="image/*" multiple  #CNIC_FRONT (change)="handleImageUpload($event,'CNIC_FRONT')" >
+                        <input  type="file" accept="image/*" multiple  #CNIC_BACK (change)="handleImageUpload($event,'CNIC_BACK')" >
+                        <input  type="file" accept="image/*" multiple  #ADD_PROOF (change)="handleImageUpload($event,'ADD_PROOF')" >
+                        <input  type="file" accept="image/*" multiple  #SIGNATURE_PROOF (change)="handleImageUpload($event,'SIGNATURE_PROOF')" >
+                        <input  type="file" accept="image/*" multiple  #EMP_ADD_PROOF (change)="handleImageUpload($event,'EMP_ADD_PROOF')" >
+                  </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:m-12 xs:m-4  content-center">
+                <button (click)="updateUserData()"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                    Save
+                </button>
+                <br />
+                <button [disabled]="!this.rForm.valid" (click)="onSubmit()"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                    Submit for PMEX
+                </button>
+              <br/>
+            </div>
+
+
+
+
+
+          </form>
+      </mat-card-content>
+  </mat-card>
+
+
+    </div>
+
+    </div>
+  </div>

@@ -1,0 +1,10 @@
+
+  <h2 mat-dialog-title>{{data.heading}}</h2>
+  <mat-dialog-content>
+  {{data.message}}
+  <br />
+</mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button (click)="onNoClick()">No</button>
+    <button mat-raised-button (click)="onYesClick()">Yes</button>
+  </mat-dialog-actions>

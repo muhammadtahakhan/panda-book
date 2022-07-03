@@ -1,0 +1,84 @@
+<body  class="grid grid-cols-1 ">
+
+  <div class=" grid grid-cols-1 place-items-center"> <img class=" xs:max-w-[70%] sm:max-w-[70%] lg:max-w-[30%]" src="./assets/KASB-_-Ktrade-logo.png.png"/></div>
+
+  <div class="lg:bg-ktgreen lg:p-12">
+
+       <div class="lg:bg-themeyello xs:bg-white " style=" border-radius: 24px;">
+
+           <div class="h-auto grid grid-cols-1  ">
+                <div class="grid lg:grid-cols-5 xs:grid-cols-1 gap-0">
+
+                    <div class="xs:hidden lg:block lg:col-span-3  " >
+                      <div class="my-12" style=" display: flex;
+                                  justify-content: center;
+                                  align-items: center; flex-direction: column; " >
+                            <h1 class="  hidden lg:block font-bold text-2xl bg-contain " style="">Want to  invest in  Oil & Gold</h1>
+                            <h1 class="  hidden lg:block font-bold text-3xl bg-contain " style="">Register Now!</h1>
+
+                           <!-- <div class="  hidden lg:block m-6  h-96 bg-contain bg-no-repeat" style=" background-image: url('./assets/image.png.png')"> </div> -->
+                           <img class=" hidden lg:block " style="height: 31rem; margin-top: 10px" src="../../assets/image.png.png">
+                      </div>
+                      </div>
+                    <div class="h-auto lg:col-span-2 sm:col-span-full xs:col-span-full bg-gradient-to-r from-white to-white m-1  shadow-2xl shadow-ktgreen-500/50 object-contain" style="margin: 0px; border-radius: 24px;">
+                          <div class="grid grid-cols-1 content-center my-12  lg:mx-12 sm:mx-2 xs:mx-2">
+
+                            <div class="m-12 content-center">
+
+                              <div class="grid grid-cols-2 gap-3 content-center">
+                                <button [routerLink]="'/login'" class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                                  Login
+                                </button>
+                                <button [routerLink]="'/register'" class=" bg-white border-2 text-gray-400 hover:text-gray-900 font-bold py-2 px-4 rounded-full">
+                                  Register
+                                </button>
+                            </div>
+
+                            <br>
+                            <br>
+                            <br>
+                              <form [formGroup]="rForm" (ngSubmit)="onSubmit()" class="example-form" autocomplete="off" >
+
+
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>Email</mat-label>
+                                  <input formControlName="email" matInput maxlength="50" placeholder="" required>
+                                  <mat-error *ngIf="myError('email', 'required')">Email is <strong>required</strong></mat-error>
+                                  <mat-error *ngIf="myError('email', 'email')"> Valid Email is <strong>required</strong></mat-error>
+
+                                </mat-form-field>
+
+
+
+                                <mat-form-field class="example-full-width">
+                                  <mat-label>Password</mat-label>
+                                  <input formControlName="password" type="password" maxlength="50" matInput placeholder="" required>
+                                  <mat-error *ngIf="myError('password', 'required')"> Password is <strong>required</strong></mat-error>
+                                </mat-form-field>
+
+                                  <!-- <re-captcha id="recaptcha"  name="recaptcha" formControlName="recaptchaReactive"  required ></re-captcha> -->
+
+
+                                <a [routerLink]="'../forget'" style="color: green;">Reset Password </a>
+
+                                <div class="grid grid-cols-1 lg:m-12 xs:m-4  content-center">
+                                  <button type="submit" [disabled]="!rForm.valid" class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+                                    Submit
+                                  </button>
+                                </div>
+
+                              </form>
+
+
+
+                            </div>
+
+                          </div>
+                    </div>
+
+              </div>
+           </div>
+
+   </div>
+   </div>
+

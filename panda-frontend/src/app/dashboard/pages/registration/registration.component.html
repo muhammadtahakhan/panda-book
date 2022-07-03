@@ -1,0 +1,172 @@
+<div class="flex h-auto">
+  <div class="mx-auto my-4">
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+
+  <mat-card >
+    <mat-card-title class="bg-green">Registration and OTP verification</mat-card-title>
+    <mat-card-content style="display: flex; justify-content: center; align-items: center;">
+        <form  [formGroup]="rForm" autocomplete="off">
+          <div class=" grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-2  xs:gap-0 gap-4">
+                <div>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Identity Type:</mat-label>
+                        <mat-select formControlName="IDENTIFICATION_TYPE" >
+                          <mat-option *ngFor="let item of Identity" [value]="item.value">
+                            {{item.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form_error('IDENTIFICATION_TYPE', 'required')">Identity Type is <strong>required</strong></mat-error>
+                        <mat-hint>Select:CNIC, SNIC, NICOP, POC</mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field appearance="standard">
+                        <mat-label>Residential Status: </mat-label>
+                        <mat-select formControlName="RESIDENTIAL_STATUS">
+                          <mat-option *ngFor="let item of residential_status" [value]="item.value">
+                            {{item.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form_error('RESIDENTIAL_STATUS', 'required')">Residential Status is <strong>required</strong></mat-error>
+                        <!-- <mat-hint>Hint</mat-hint> -->
+                    </mat-form-field>
+                </div>
+                <div>
+                  <mat-form-field appearance="standard">
+                      <mat-label>CNIC </mat-label>
+                      <input maxlength="30" matInput  placeholder="Enter your CNIC"  formControlName="UIN">
+                      <mat-error *ngIf="form_error('UIN', 'required')">CNIC is <strong>required</strong></mat-error>
+                      <mat-error *ngIf="form_error('UIN', 'pattern')">Special Character not allowed </mat-error>
+                      <!-- <mat-hint>CNIC</mat-hint> -->
+                  </mat-form-field>
+              </div>
+              <div>
+                <mat-form-field appearance="standard">
+                    <mat-label>Full Name </mat-label>
+                    <input  maxlength="30" matInput  placeholder="Enter your Name"  formControlName="NAME">
+                    <mat-error *ngIf="form_error('NAME', 'required')">Name is <strong>required</strong></mat-error>
+                    <mat-error *ngIf="form_error('NAME', 'pattern')">Special Character not allowed </mat-error>
+                    <!-- <mat-hint>Hint</mat-hint> -->
+                </mat-form-field>
+            </div>
+            <div>
+              <mat-form-field appearance="standard">
+                  <mat-label>Mobile Number </mat-label>
+                  <input maxlength="11" matInput  placeholder="Enter your Mobile Number"  formControlName="MOBILE_NO">
+                  <mat-error *ngIf="form_error('MOBILE_NO', 'required')">Mobile Number is <strong>required</strong></mat-error>
+                  <mat-error *ngIf="form_error('MOBILE_NO', 'pattern')">Special Character not allowed </mat-error>
+                  <mat-hint>03xxxxxxxxx</mat-hint>
+              </mat-form-field>
+          </div>
+          <div >
+            <mat-form-field appearance="standard">
+                <mat-label>Issue Date of CNIC, SNIC, NICOP, POC </mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="ISSUE_DATE">
+                <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="form_error('ISSUE_DATE', 'required')">Issue Date is <strong>required</strong></mat-error>
+                <!-- <mat-hint>Hint</mat-hint> -->
+            </mat-form-field>
+
+        </div>
+        <div>
+          <mat-form-field appearance="standard">
+              <mat-label>Email </mat-label>
+              <input matInput  placeholder="Enter your Email"  formControlName="EMAIL">
+              <mat-error *ngIf="form_error('EMAIL', 'required')">EMAIL is <strong>required</strong></mat-error>
+              <!-- <mat-hint>Hint</mat-hint> -->
+          </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field appearance="standard">
+            <mat-label>Mobile Number Registered Status </mat-label>
+            <mat-select  formControlName="RELATIONSHIP">
+              <mat-option *ngFor="let item of relationship"  [value]="item.value">
+                {{item.viewValue}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form_error('RELATIONSHIP', 'required')">Mobile Number Registered Status is <strong>required</strong></mat-error>
+            <!-- <mat-hint>Hint</mat-hint> -->
+        </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="standard">
+          <mat-label>IBAN No </mat-label>
+          <input  matInput maxlength="24" placeholder="Enter your IBAN NO"  formControlName="IBAN_NO">
+          <mat-error *ngIf="form_error('IBAN_NO', 'required')">IBAN NO is <strong>required</strong></mat-error>
+          <mat-error *ngIf="form_error('IBAN_NO', 'pattern')">Special Character not allowed </mat-error>
+          <!-- <mat-hint>Hint</mat-hint> -->
+      </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="standard" *ngIf="rForm.get('RELATIONSHIP')?.value != 01">
+        <mat-label>Relative CNIC </mat-label>
+        <input matInput maxlength="30"  placeholder="Enter your Relative CNIC"  formControlName="Relative_UIN">
+        <mat-error *ngIf="form_error('Relative_UIN', 'required')">Relative CNIC is <strong>required</strong></mat-error>
+        <mat-error *ngIf="form_error('Relative_UIN', 'pattern')">Special Character not allowed </mat-error>
+        <mat-hint>Relative CNIC </mat-hint>
+    </mat-form-field>
+</div>
+<div class="grid grid-cols-1 lg:m-12 xs:m-4 ">
+  <label>Proof of IBAN</label>
+  <button style="height: 40px;" *ngIf="!rForm.get('ProofofIBAN')?.value" (click)="ProofofIBAN.click()"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+   Select Proof of IBAN
+  </button>
+  <div  *ngIf="rForm.get('ProofofIBAN')?.value" class="flex flex-wrap justify-center relative">
+    <img style="height: 100px !important" class="max-w-full h-auto rounded-lg" [src]="'data:image/png;base64,'+rForm.get('ProofofIBAN')?.value" />
+    <mat-icon (click)="rForm.get('ProofofIBAN')?.setValue(null)" style="color:black"  class="absolute top-0 " >close</mat-icon>
+</div>
+
+</div>
+
+<div class="grid grid-cols-1 lg:m-12 xs:m-4 ">
+  <label>proof of Relationship</label>
+  <button  style="height: 40px;" *ngIf="!rForm.get('proofofRelationship')?.value" (click)="proofofRelationship.click()"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+    Select proof of Relationship
+  </button>
+
+  <div  *ngIf="rForm.get('proofofRelationship')?.value" class="flex flex-wrap justify-center relative">
+    <img style="height: 100px !important" class="max-w-full h-auto rounded-lg" [src]="'data:image/png;base64,'+rForm.get('proofofRelationship')?.value" />
+    <mat-icon (click)="rForm.get('proofofRelationship')?.setValue(null)" style="color:black"  class="absolute top-0 " >close</mat-icon>
+</div>
+
+</div>
+
+
+<div style="display: none;">
+
+      <input  type="file" accept="image/*" multiple  #ProofofIBAN (change)="handleImageUpload($event,'ProofofIBAN')" >
+      <input  type="file" accept="image/*" multiple  #proofofRelationship (change)="handleImageUpload($event,'proofofRelationship')" >
+</div>
+
+
+          </div>
+
+
+
+          <div class="grid grid-cols-1 lg:m-12 xs:m-4  content-center">
+            <button (click)="updateUserData()"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+              Save
+            </button>
+            <br/>
+            <button (click)="onSubmit()" type="submit"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+              Generate OTP
+            </button>
+
+          </div>
+
+
+
+        </form>
+    </mat-card-content>
+</mat-card>
+
+
+  </div>
+
+  </div>
+</div>
