@@ -89,7 +89,7 @@ class BillController extends  BaseController
     public function delete(Request $request) {
         try{
             $validator = Validator::make($request->all(), [
-                'id' => 'required|exists:bills,id',
+                'id' => 'required|exists:bills,id,deleted_at,NULL',
             ]);
             if ($validator->fails()) {
                 return response()->json(['error'=>$validator->errors()], 422);

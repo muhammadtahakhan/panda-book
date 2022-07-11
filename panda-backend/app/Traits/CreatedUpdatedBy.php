@@ -24,12 +24,12 @@ trait CreatedUpdatedBy
             }
         });
 
-        // // deleting delted_by when model is deleted
-        // static::deleting(function ($model) {
-        //     if (!$model->isDirty('deleted_by')) {
-        //         $model->deleted_by =  Auth::user() ? Auth::user()->id : null;
-        //         // $model->save();
-        //     }
-        // });
+        // deleting delted_by when model is deleted
+        static::deleting(function ($model) {
+            if (!$model->isDirty('deleted_by')) {
+                $model->deleted_by =  Auth::user() ? Auth::user()->id : null;
+                $model->save();
+            }
+        });
     }
 }
