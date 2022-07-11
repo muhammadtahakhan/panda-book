@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaymentsTable extends Migration
+class AddPartyIdInPayments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreatePaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
-            $table->id();
-            $table->integer('paid_amount');
-            $table->bigInteger('bill_id')->nullable();
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('payments', function (Blueprint $table) {
+            $table->bigInteger('party_id')->after('bill_id'); //this will be user id
         });
     }
 
@@ -29,6 +25,8 @@ class CreatePaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::table('payments', function (Blueprint $table) {
+            //
+        });
     }
 }

@@ -67,4 +67,8 @@ Route::group(['middleware' => ['cors', 'json.response', 'auth:api']], function()
     Route::delete('appartment', 'API\AppartmentController@delete');
 
     // Payments
+    Route::post('appartment', 'API\PaymentController@create');
+    Route::get('appartment/bills/{id}', 'API\PaymentController@bills');
+    Route::get('appartment/payments/{id}', 'API\PaymentController@payments');
+    Route::get('appartment/status/{id}', 'API\PaymentController@status');
 });

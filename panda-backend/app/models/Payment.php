@@ -12,6 +12,11 @@ class Payment extends Model
     use SoftDeletes, CreatedUpdatedBy;
     protected $table = 'payments';
     protected $fillable = [
-        'paid_amount', 'bill_id'
+        'paid_amount', 'bill_id', 'party_id'
     ];
+
+    public function party()
+    {
+     return $this->belongsTo('App\User', 'id', 'party_id');
+    }
 }

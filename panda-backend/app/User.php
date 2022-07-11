@@ -49,7 +49,11 @@ class User extends Authenticatable
     ];
 
     public function bills()
-        {
-            return $this->hasMany('App\models\Bill','party_id');
-        }
+    {
+        return $this->hasMany('App\models\Bill', 'party_id');
+    }
+    public function payments()
+    {
+        return $this->hasMany('App\models\Payment', 'party_id');
+    }
 }

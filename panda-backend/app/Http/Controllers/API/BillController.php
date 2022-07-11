@@ -61,7 +61,6 @@ class BillController extends  BaseController
 
         $validator = Validator::make($request->all(), [
             'amount' => 'required|numeric',
-            'party_id' => 'required|exists:users,id',
             'description' => 'required'
         ]);
         if ($validator->fails()) {

@@ -14,7 +14,7 @@ class Bill extends Model
 
     public function party()
     {
-     return $this->belongsTo('App\User');
+     return $this->belongsTo('App\User', 'id', 'party_id');
     }
 
 
