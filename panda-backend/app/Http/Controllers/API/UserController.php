@@ -170,8 +170,8 @@ public $successStatus = 200;
         // $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['name'] =  $user->name;
         $success['mobile'] =  $user->mobile;
-        $this->postToCrm($user);
-        $this->sendVerificationEmail($user);
+        // $this->postToCrm($user);
+        // $this->sendVerificationEmail($user);
         return response()->json(['success'=>$success], $this->successStatus);
     }
 

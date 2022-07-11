@@ -12,8 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use SoftDeletes;
-    use Notifiable, HasApiTokens, CreatedUpdatedBy; // update this line
+    use SoftDeletes, Notifiable, HasApiTokens, CreatedUpdatedBy; // update this line
 
     function getLoginStatusAttribute() {
         return count(User::find($this->id)->tokens);
@@ -27,7 +26,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
 
-        'name', 'email', 'password',  'name',
+        'name', 'email', 'password',  'name', 'user_type'
 
     ];
 
