@@ -52,5 +52,7 @@ Route::group(['middleware' => ['cors', 'json.response', 'auth:api']], function()
 
     Route::get('ping', 'API\UserController@ping');
 
+    // Billing
 
+    // Payments
 });
