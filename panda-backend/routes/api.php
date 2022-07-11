@@ -50,9 +50,20 @@ Route::group(['middleware' => ['cors', 'json.response', 'auth:api']], function()
     Route::delete('ukn', 'API\UknController@delete');
 
 
+
+
     Route::get('ping', 'API\UserController@ping');
 
     // Billing
+    Route::get('bill', 'API\BillController@list');
+    Route::post('bill', 'API\BillController@create');
+    Route::post('bill_for_all', 'API\BillController@create_for_all');
+    Route::delete('bill', 'API\BillController@delete');
+
+    // Appartment
+    Route::get('bill', 'API\BillController@list');
+    Route::post('bill', 'API\BillController@create');
+    Route::delete('bill', 'API\BillController@delete');
 
     // Payments
 });

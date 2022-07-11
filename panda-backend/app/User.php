@@ -8,9 +8,11 @@ use Illuminate\Notifications\Notifiable;
 use App\Providers\Passport;
 use Laravel\Passport\HasApiTokens;
 use App\Traits\CreatedUpdatedBy;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
+    use SoftDeletes;
     use Notifiable, HasApiTokens, CreatedUpdatedBy; // update this line
 
     function getLoginStatusAttribute() {
@@ -46,4 +48,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function bills()
+        {
+            return $this->hasMany('App\models\Bill','party_id');
+        }
 }

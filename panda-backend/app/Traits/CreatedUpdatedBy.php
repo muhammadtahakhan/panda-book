@@ -23,5 +23,13 @@ trait CreatedUpdatedBy
                 $model->updated_by =  Auth::user() ? Auth::user()->id : null;
             }
         });
+
+        // // deleting delted_by when model is deleted
+        // static::deleting(function ($model) {
+        //     if (!$model->isDirty('deleted_by')) {
+        //         $model->deleted_by =  Auth::user() ? Auth::user()->id : null;
+        //         // $model->save();
+        //     }
+        // });
     }
 }

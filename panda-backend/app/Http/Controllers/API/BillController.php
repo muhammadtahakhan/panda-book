@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
+use App\models\Bill;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Validator;
@@ -17,63 +18,93 @@ class BillController extends  BaseController
             $pageIndex =  $request->query->get('page_index', 0);
             $search    =  $request->query->get('search');
 
-            $data = Ukn::orderBy('id', 'DESC');
+            $data = Bill::orderBy('id', 'DESC');
             if($search) {
                 $data = $data->where(function($query) use($search){
 
-                    $query = $query->orWhere('ukn', 'LIKE', "%$search%");
+                    $query = $query->orWhere('Bill', 'LIKE', "%$search%");
                     $query = $query->orWhere('uin', 'LIKE', "%$search%");
 
                 });
             }
             $data = $data->paginate($pageSize, ['*'], 'page', $pageIndex);
-            return $this->sendResponse($data, 'Ukn List');
+            return $this->sendResponse($data, 'Bill List');
         } catch(\Exception $e) {
-            return $this->sendError($e->getMessage(), []);
+            return $this->sendError([], $e->getMessage());
         }
     }
 
     public function create(Request $request) {
+        $currentUser = Auth::user();
+
+        $validator = Validator::make($request->all(), [
+            'amount' => 'required|numeric',
+            'party_id' => 'required|exists:users,id',
+            'description' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()], 422);
+        }
+
         $data            = $request->all();
-        $data = Ukn::create($data);
+        $data = Bill::create($data);
         if($data) {
-            return $this->sendResponse($data, 'Ukn Created Successfully');
+            return $this->sendResponse($data, 'Bill Created Successfully');
         }
         else {
-            return $this->sendError($data, 'Ukn can not updat Successfully');
+            return $this->sendError($data, 'Bill can not updat Successfully');
         }
     }
 
-    public function update(Request $request) {
-        try {
-            $this->validate($request, ['id' => 'exists:ukn,id']);
-            $id = $request['id'];
-            $data = Ukn::findOrFail($request['id']);
-            $data->update($request->all());
-            if($data) {
-                return $this->sendResponse($data, 'Ukn Updated Successfully');
-            }
-            else {
-                return $this->sendError($data, 'Ukn can not update Successfully');
-            }
-        } catch(\Exception $e) {
-            return $this->sendError($e->getMessage(), []);
+    public function create_for_all(Request $request) {
+        $currentUser = Auth::user();
+
+        $validator = Validator::make($request->all(), [
+            'amount' => 'required|numeric',
+            'party_id' => 'required|exists:users,id',
+            'description' => 'required'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()], 422);
+        }
+
+        $data            = $request->all();
+        $res = [];
+        $apparments = User::where('user_type','appartment')->get();
+        foreach ($apparments as $key => $value) {
+            $data['party_id'] = $value['id'];
+            $res[] = Bill::create($data);
+        }
+
+        if($res) {
+            return $this->sendResponse($res, 'Bill Created Successfully');
+        }
+        else {
+            return $this->sendError($data, 'Bill can not updat Successfully');
         }
     }
+
+
 
     public function delete(Request $request) {
         try{
-            $this->validate($request, ['id' => 'exists:ukn,id',]);
+            $validator = Validator::make($request->all(), [
+                'id' => 'required|exists:bills,id',
+            ]);
+            if ($validator->fails()) {
+                return response()->json(['error'=>$validator->errors()], 422);
+            }
+
             $id = $request['id'];
-            $data = Ukn::find($request['id'])->delete();
+            $data = Bill::find($request['id'])->delete();
             if($data) {
-                return $this->sendResponse($data, 'Ukn Deleted Successfully');
+                return $this->sendResponse($data, 'Bill Deleted Successfully');
             }
             else {
-                return $this->sendError($data, 'Ukn Deleted Successfully');
+                return $this->sendError($data, 'Bill Deleted Successfully');
             }
         } catch(\Exception $e) {
-            return $this->sendError($e->getMessage(), []);
+            return $this->sendError([], $e->getMessage());
         }
     }
 }
