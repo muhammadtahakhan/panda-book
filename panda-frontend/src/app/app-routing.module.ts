@@ -7,12 +7,13 @@ import { RegisterComponent } from './register/register.component';
 import { AdminGuardService } from './shared/_guards/admin-guard.service';
 
 const routes: Routes = [
-  { path: '',    redirectTo: 'register',    pathMatch: 'full',  },
+  { path: '',    redirectTo: 'login',    pathMatch: 'full',  },
   { path: 'login',    component:  LoginComponent    },
-  { path: 'register',    component: RegisterComponent  },
+  // { path: 'register',    component: RegisterComponent  },
   { path: 'forget',    component: ForgetpasswordComponent  },
   { path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)   },
   { path: 'admin', canActivate: [AdminGuardService], loadChildren: () => import('./administrator/administrator.module').then(m => m.AdministratorModule)   },
+  { path: 'guard', loadChildren: () => import('./guard/guard.module').then(m => m.GuardModule) },
 ];
 
 @NgModule({

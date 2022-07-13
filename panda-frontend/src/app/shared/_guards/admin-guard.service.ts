@@ -20,7 +20,11 @@ export class AdminGuardService {
       console.log("ActivatedRouteSnapshot === >", this.auth.currentUser?.user_type);
       if (this.auth.currentUser?.user_type == 'admin' && route.routeConfig?.path == 'admin') {
          return true;
-      } else {
+      }
+      else if (this.auth.currentUser?.user_type == 'guard' && route.routeConfig?.path == 'guard') {
+        return true;
+     }
+      else {
         this.router.navigate(["/login"], {
           queryParams: { returnUrl: state.url }
         });
