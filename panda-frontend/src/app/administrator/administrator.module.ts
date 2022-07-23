@@ -29,7 +29,6 @@ import { KycFormComponent } from './kyc-form/kyc-form.component';
     FormsModule,
     ReactiveFormsModule,
     AngularMaterialModule,
-
     MatTableModule,
     MatSortModule
 

@@ -53,7 +53,11 @@ export class LoginComponent implements OnInit {
               if(res.success){
                 if(res.success.user.user_type == 'admin'){
                   this.router.navigate(['admin']);
-                }else{
+                }
+                else if(res.success.user.user_type == 'guard'){
+                  this.router.navigate(['guard']);
+                }
+                else{
                   this.router.navigate(['dashboard']);
                 }
                 this.globalEvents.broadcast('serverMsg',"Login Successfully");
