@@ -164,4 +164,17 @@ export class AuthService extends BaseService {
       return  this.http.get(this.url+'user/'+userId);
     }
 
+    // ========================================================================================
+  getAppartmentsData(paramsData = {pageSize:'',pageIndex: '0'}, search=''): Observable<any>{
+    let params = new HttpParams();
+    params = params.append('page_size', paramsData.pageSize ? paramsData.pageSize : '');
+    params = params.append('page_index', paramsData.pageIndex ? (parseInt(paramsData.pageIndex) + 1).toString() : '1');
+    if(search){
+      params = params.append('search', search);
+    }
+
+    return  this.http.get(this.url+'appartment', {params: params})
+    // .pipe( map((user:any) =>{ this.currentUser = user; return user;}) )
+  }
+
 }
