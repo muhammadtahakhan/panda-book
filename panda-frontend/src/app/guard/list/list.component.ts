@@ -183,7 +183,7 @@ export class ListComponent implements OnInit {
 
   deleteItem(item: any){
     this.spinner.show();
-    this.auth.deleteUkn(item).pipe(takeUntil(this._onDestroy)).subscribe(
+    this.auth.deleteAppartments(item).pipe(takeUntil(this._onDestroy)).subscribe(
       (res:any)=>{
         this.globalEvents.broadcast('serverMsg',res.message);
         this.remove(item);
