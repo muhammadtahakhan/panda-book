@@ -1,1 +1,74 @@
-<p>create works!</p>
+<div class="flex h-auto">
+  <div class="mx-auto my-4">
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+
+  <mat-card >
+    <mat-card-title class="bg-green">Create Residency</mat-card-title>
+    <mat-card-content style="display: flex; justify-content: center; align-items: center;">
+        <form  [formGroup]="rForm" autocomplete="off">
+
+          <div class=" grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-2  xs:gap-0 gap-4">
+
+                <div>
+                  <mat-form-field appearance="standard">
+                      <mat-label>Name </mat-label>
+                      <input maxlength="30" matInput  placeholder="Enter your CNIC"  formControlName="name">
+                      <mat-error *ngIf="form_error('name', 'required')">Name is <strong>required</strong></mat-error>
+                      <mat-error *ngIf="form_error('name', 'pattern')">Special Character not allowed </mat-error>
+                      <!-- <mat-hint>CNIC</mat-hint> -->
+                  </mat-form-field>
+               </div>
+               <div>
+                <mat-form-field appearance="standard">
+                    <mat-label>Mobile </mat-label>
+                    <input maxlength="30" matInput  placeholder="Enter your CNIC"  formControlName="mobile">
+                    <mat-error *ngIf="form_error('mobile', 'required')">Mobile is <strong>required</strong></mat-error>
+                    <mat-error *ngIf="form_error('mobile', 'pattern')">Special Character not allowed </mat-error>
+                    <!-- <mat-hint>CNIC</mat-hint> -->
+                </mat-form-field>
+             </div>
+             <div>
+              <mat-form-field appearance="standard">
+                  <mat-label>Email </mat-label>
+                  <input maxlength="30" matInput  placeholder="Enter your CNIC"  formControlName="email">
+                  <mat-error *ngIf="form_error('email', 'required')">Email is <strong>required</strong></mat-error>
+                  <mat-error *ngIf="form_error('email', 'pattern')">Special Character not allowed </mat-error>
+                  <!-- <mat-hint>CNIC</mat-hint> -->
+              </mat-form-field>
+           </div>
+           <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Address </mat-label>
+                <input maxlength="30" matInput  placeholder="Enter your CNIC"  formControlName="address">
+                <mat-error *ngIf="form_error('address', 'required')">Address is <strong>required</strong></mat-error>
+                <mat-error *ngIf="form_error('address', 'pattern')">Special Character not allowed </mat-error>
+                <!-- <mat-hint>CNIC</mat-hint> -->
+            </mat-form-field>
+         </div>
+
+          </div>
+
+
+          <div class="grid grid-cols-1 lg:m-12 xs:m-4  content-center">
+
+
+            <button [disabled]="!rForm.valid" (click)="onSubmit()" type="submit"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+              Submit
+            </button>
+            <br>
+
+          </div>
+
+
+
+        </form>
+    </mat-card-content>
+</mat-card>
+
+
+  </div>
+
+  </div>
+</div>

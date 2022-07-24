@@ -185,4 +185,14 @@ export class AuthService extends BaseService {
       return this.http.delete(this.url+'appartment',  httpOptions);
    }
 
+   createoOrUpdateAppartments(data: any): Observable<any> {
+    debugger;
+    if(data.id){
+      return this.http.put(this.url+'appartment',  data, this.httpOptions);
+    }else{
+      return this.http.post(this.url+'appartment',  data, this.httpOptions);
+    }
+ }
+
+
 }
