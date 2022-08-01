@@ -42,7 +42,7 @@ export class CreateComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dialogRef: MatDialogRef<TagUserComponent>,
+    public dialogRef: MatDialogRef<CreateComponent>,
     private spinner: NgxSpinnerService, private _snackBar: MatSnackBar, private route: ActivatedRoute,private router: Router, private globalEvents: GlobalEventService, private auth:AuthService,  private formBuilder: FormBuilder) {
     this.currentData = data;
     this.rForm = this.createFormGroupWithBuilder(this.formBuilder);

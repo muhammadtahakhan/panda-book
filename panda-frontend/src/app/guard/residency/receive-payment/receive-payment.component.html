@@ -1,0 +1,52 @@
+<div class="flex h-auto">
+  <div class="mx-auto my-4">
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+
+
+  <mat-card >
+    <mat-card-title class="bg-green">{{data['residency']['name']}}</mat-card-title>
+    <mat-card-content style="display: flex; justify-content: center; align-items: center;">
+        <form  [formGroup]="rForm" autocomplete="off">
+          <small>{{data['residency']['address']}}</small>
+          <div class=" grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-2  xs:gap-0 gap-4">
+
+                <div>
+                  <mat-form-field appearance="standard">
+                      <mat-label>Amount </mat-label>
+                      <input maxlength="30" matInput  placeholder="Enter receiving amount"  formControlName="paid_amount">
+                      <mat-error *ngIf="form_error('paid_amount', 'required')">Amount is <strong>required</strong></mat-error>
+                      <mat-error *ngIf="form_error('paid_amount', 'pattern')">Special Character not allowed </mat-error>
+                      <!-- <mat-hint>CNIC</mat-hint> -->
+                  </mat-form-field>
+              </div>
+
+
+
+
+
+</div>
+
+
+          <div class="grid grid-cols-1 lg:m-12 xs:m-4  content-center">
+
+
+            <button [disabled]="!rForm.valid" (click)="onSubmit()" type="submit"  class="bg-ktgreen hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full">
+              Submit
+            </button>
+            <br>
+
+
+          </div>
+
+
+
+        </form>
+    </mat-card-content>
+</mat-card>
+
+
+  </div>
+
+  </div>
+</div>

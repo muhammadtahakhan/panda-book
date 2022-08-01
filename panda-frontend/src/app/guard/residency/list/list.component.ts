@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/shared/service/auth.service';
 import { DialogComponent } from 'src/app/shared/_components/dialog/dialog.component';
 import { GlobalEventService } from 'src/app/shared/_helpers/global-event.service';
 import { CreateComponent } from '../create/create.component';
+import { PaymentStatusComponent } from '../payment-status/payment-status.component';
+import { ReceivePaymentComponent } from '../receive-payment/receive-payment.component';
 
 @Component({
   selector: 'app-list',
@@ -191,6 +193,48 @@ export class ListComponent implements OnInit {
       (error)=>{},
       ()=>{this.spinner.hide();}
     );
+  }
+
+  residencyStatus(item: any){
+    this.spinner.show();
+    this.auth.residencyStatus(item.id).pipe(takeUntil(this._onDestroy)).subscribe(
+      (res:any)=>{
+        this.openResidencyStatusDialog(res.data, item);
+        this.globalEvents.broadcast('serverMsg',res.message);
+      },
+      (error)=>{this.spinner.hide();},
+      ()=>{this.spinner.hide();}
+    );
+  }
+
+   // Dialog for payment status Template
+   openResidencyStatusDialog(item: any, residency:any): void {
+    const dialogRef = this.dialog.open(PaymentStatusComponent, {
+
+        width: '750%',
+        data: item
+    });
+
+    dialogRef.afterClosed().pipe(takeUntil(this._onDestroy)).subscribe(result => {
+     if(result && result['action']=='receivePayment') {
+      this.receivePayment(item, residency);
+
+     }
+
+    });
+  }
+
+  receivePayment(payment:any, residency:any){
+
+    const dialogRef = this.dialog.open(ReceivePaymentComponent, {
+      data: {payment, residency}
+  });
+
+  dialogRef.afterClosed().pipe(takeUntil(this._onDestroy)).subscribe(result => {
+   if(result) {}
+
+  });
+
   }
 
 

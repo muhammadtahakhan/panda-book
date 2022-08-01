@@ -185,6 +185,11 @@ export class AuthService extends BaseService {
       return this.http.delete(this.url+'appartment',  httpOptions);
    }
 
+   residencyStatus(id: any): Observable<any> {
+
+    return this.http.get(this.url+'payment/status/'+id,  this.httpOptions);
+ }
+
    createoOrUpdateAppartments(data: any): Observable<any> {
     debugger;
     if(data.id){
@@ -192,7 +197,11 @@ export class AuthService extends BaseService {
     }else{
       return this.http.post(this.url+'appartment',  data, this.httpOptions);
     }
- }
+  }
+
+ receivePayment(data: {}){
+  return  this.http.post(this.url+'payment',  data, )
+  }
 
 
 }

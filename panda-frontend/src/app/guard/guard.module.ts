@@ -7,15 +7,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { AngularMaterialModule } from '../material.module';
-import { ListComponent } from './list/list.component';
-import { CreateComponent } from './create/create.component';
+import { ListComponent } from './residency/list/list.component';
+import { CreateComponent } from './residency/create/create.component';
+import { PaymentStatusComponent } from './residency/payment-status/payment-status.component';
+import { ReceivePaymentComponent } from './residency/receive-payment/receive-payment.component';
 
 
 @NgModule({
   declarations: [
     GuardComponent,
     ListComponent,
-    CreateComponent
+    CreateComponent,
+    PaymentStatusComponent,
+    ReceivePaymentComponent
   ],
   imports: [
     CommonModule,
