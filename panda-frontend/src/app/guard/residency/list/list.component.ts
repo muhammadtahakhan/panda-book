@@ -85,7 +85,9 @@ export class ListComponent implements OnInit {
 
   openDialog(data = {}) {
     // console.log(data);
-    const dialogRef = this.dialog.open(CreateComponent, {data});
+    const dialogRef = this.dialog.open(CreateComponent, {
+      height: '90%',
+      data});
 
     dialogRef.afterClosed().subscribe(result => {
       // console.log(`Dialog result: ${result}`);

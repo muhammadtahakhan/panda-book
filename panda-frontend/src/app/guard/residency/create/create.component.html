@@ -9,44 +9,108 @@
     <mat-card-content style="display: flex; justify-content: center; align-items: center;">
         <form  [formGroup]="rForm" autocomplete="off">
 
-          <div class=" grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-2  xs:gap-0 gap-4">
+          <div class=" grid xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-3  xs:gap-0 gap-4">
 
                 <div>
                   <mat-form-field appearance="standard">
                       <mat-label>Name </mat-label>
-                      <input maxlength="30" matInput  placeholder="Enter your CNIC"  formControlName="name">
+                      <input maxlength="30" matInput  placeholder="Enter your "  formControlName="name">
                       <mat-error *ngIf="form_error('name', 'required')">Name is <strong>required</strong></mat-error>
                       <mat-error *ngIf="form_error('name', 'pattern')">Special Character not allowed </mat-error>
-                      <!-- <mat-hint>CNIC</mat-hint> -->
+                      <!-- <mat-hint></mat-hint> -->
                   </mat-form-field>
                </div>
                <div>
                 <mat-form-field appearance="standard">
                     <mat-label>Mobile </mat-label>
-                    <input maxlength="30" matInput  placeholder="Enter your CNIC"  formControlName="mobile">
+                    <input maxlength="30" matInput  placeholder="Enter your "  formControlName="mobile">
                     <mat-error *ngIf="form_error('mobile', 'required')">Mobile is <strong>required</strong></mat-error>
                     <mat-error *ngIf="form_error('mobile', 'pattern')">Special Character not allowed </mat-error>
-                    <!-- <mat-hint>CNIC</mat-hint> -->
+                    <!-- <mat-hint></mat-hint> -->
                 </mat-form-field>
              </div>
              <div>
               <mat-form-field appearance="standard">
                   <mat-label>Email </mat-label>
-                  <input maxlength="30" matInput  placeholder="Enter your CNIC"  formControlName="email">
+                  <input maxlength="30" matInput  placeholder="Enter your "  formControlName="email">
                   <mat-error *ngIf="form_error('email', 'required')">Email is <strong>required</strong></mat-error>
                   <mat-error *ngIf="form_error('email', 'pattern')">Special Character not allowed </mat-error>
-                  <!-- <mat-hint>CNIC</mat-hint> -->
+                  <!-- <mat-hint></mat-hint> -->
               </mat-form-field>
            </div>
            <div>
             <mat-form-field appearance="standard">
                 <mat-label>Address </mat-label>
-                <input maxlength="30" matInput  placeholder="Enter your CNIC"  formControlName="address">
+                <input maxlength="30" matInput  placeholder="Enter your "  formControlName="address">
                 <mat-error *ngIf="form_error('address', 'required')">Address is <strong>required</strong></mat-error>
                 <mat-error *ngIf="form_error('address', 'pattern')">Special Character not allowed </mat-error>
-                <!-- <mat-hint>CNIC</mat-hint> -->
+                <!-- <mat-hint></mat-hint> -->
             </mat-form-field>
-         </div>
+           </div>
+
+           <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Car </mat-label>
+                <input maxlength="30" matInput  placeholder="Enter your "  formControlName="car">
+                <mat-error *ngIf="form_error('car', 'required')">car is <strong>required</strong></mat-error>
+                <mat-error *ngIf="form_error('car', 'pattern')">Special Character not allowed </mat-error>
+                <!-- <mat-hint></mat-hint> -->
+            </mat-form-field>
+           </div>
+           <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Tenant Name </mat-label>
+                <input maxlength="30" matInput  placeholder="Enter your "  formControlName="tenant_name">
+                <mat-error *ngIf="form_error('tenant_name', 'required')">tenant_name is <strong>required</strong></mat-error>
+                <mat-error *ngIf="form_error('tenant_name', 'pattern')">Special Character not allowed </mat-error>
+                <!-- <mat-hint></mat-hint> -->
+            </mat-form-field>
+           </div>
+           <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Tenant Mobile </mat-label>
+                <input maxlength="30" matInput  placeholder="Enter your "  formControlName="tenant_mobile">
+                <mat-error *ngIf="form_error('tenant_mobile', 'required')">tenant_mobile is <strong>required</strong></mat-error>
+                <mat-error *ngIf="form_error('tenant_mobile', 'pattern')">Special Character not allowed </mat-error>
+                <!-- <mat-hint></mat-hint> -->
+            </mat-form-field>
+           </div>
+           <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Tenant Car </mat-label>
+                <input maxlength="30" matInput  placeholder="Enter your "  formControlName="tenant_car">
+                <mat-error *ngIf="form_error('tenant_car', 'required')">tenant_car is <strong>required</strong></mat-error>
+                <mat-error *ngIf="form_error('tenant_car', 'pattern')">Special Character not allowed </mat-error>
+                <!-- <mat-hint></mat-hint> -->
+            </mat-form-field>
+           </div>
+           <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Tenant Two Name </mat-label>
+                <input maxlength="30" matInput  placeholder="Enter your "  formControlName="tenant_two_name">
+                <mat-error *ngIf="form_error('tenant_two_name', 'required')">tenant_two_name is <strong>required</strong></mat-error>
+                <mat-error *ngIf="form_error('tenant_two_name', 'pattern')">Special Character not allowed </mat-error>
+                <!-- <mat-hint></mat-hint> -->
+            </mat-form-field>
+           </div>
+           <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Tenant Two Mobile </mat-label>
+                <input maxlength="30" matInput  placeholder="Enter your "  formControlName="tenant_two_mobile">
+                <mat-error *ngIf="form_error('tenant_two_mobile', 'required')">tenant_two_mobile is <strong>required</strong></mat-error>
+                <mat-error *ngIf="form_error('tenant_two_mobile', 'pattern')">Special Character not allowed </mat-error>
+                <!-- <mat-hint></mat-hint> -->
+            </mat-form-field>
+           </div>
+           <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Tenant two car </mat-label>
+                <input maxlength="30" matInput  placeholder="Enter your "  formControlName="tenant_two_car">
+                <mat-error *ngIf="form_error('tenant_two_car', 'required')">tenant_two_car is <strong>required</strong></mat-error>
+                <mat-error *ngIf="form_error('tenant_two_car', 'pattern')">Special Character not allowed </mat-error>
+                <!-- <mat-hint></mat-hint> -->
+            </mat-form-field>
+           </div>
 
           </div>
 

@@ -101,7 +101,15 @@ export class CreateComponent implements OnInit {
       name: [{value:this.currentData?.name, disabled:false}, Validators.compose([Validators.required])],
       mobile: [{value:this.currentData?.mobile, disabled:false}, Validators.compose([Validators.required])],
       email: [{value:this.currentData?.email, disabled:false}, Validators.compose([Validators.required])],
-      address: [{value:this.currentData?.address, disabled:false}, Validators.compose([ ])]
+      address: [{value:this.currentData?.address, disabled:false}, Validators.compose([ ])],
+
+      car: [{value:this.currentData?.car, disabled:false}, Validators.compose([ ])],
+      tenant_name: [{value:this.currentData?.tenant_name, disabled:false}, Validators.compose([ ])],
+      tenant_mobile: [{value:this.currentData?.tenant_mobile, disabled:false}, Validators.compose([ ])],
+      tenant_car: [{value:this.currentData?.tenant_car, disabled:false}, Validators.compose([ ])],
+      tenant_two_name: [{value:this.currentData?.tenant_two_name, disabled:false}, Validators.compose([ ])],
+      tenant_two_mobile: [{value:this.currentData?.tenant_two_mobile, disabled:false}, Validators.compose([ ])],
+      tenant_two_car: [{value:this.currentData?.tenant_two_car, disabled:false}, Validators.compose([ ])],
 
     });
   }

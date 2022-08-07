@@ -14,7 +14,7 @@
                 <div>
                   <mat-form-field appearance="standard">
                       <mat-label>Amount </mat-label>
-                      <input maxlength="30" matInput  placeholder="Enter receiving amount"  formControlName="paid_amount">
+                      <input maxlength="30" matInput type="number"  placeholder="Enter receiving amount"  formControlName="paid_amount">
                       <mat-error *ngIf="form_error('paid_amount', 'required')">Amount is <strong>required</strong></mat-error>
                       <mat-error *ngIf="form_error('paid_amount', 'pattern')">Special Character not allowed </mat-error>
                       <!-- <mat-hint>CNIC</mat-hint> -->

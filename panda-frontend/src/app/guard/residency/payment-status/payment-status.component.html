@@ -4,10 +4,11 @@
 <mat-dialog-content class="mat-typography">
   <!-- <h3>Develop across all platforms</h3> -->
   <table>
-    <tr><td>Billed amount</td><td style="color: gray;">: Rs{{currentData['billed_amount']}}</td></tr>
-    <tr><td>Total Paid amount</td><td style="color: green;">: Rs{{currentData['paid_amount']}}</td></tr>
+    <tr><td>Billed amount</td><td style="color: gray;">: Rs {{currentData['billed_amount']}}</td></tr>
+    <tr><td>Total Paid amount</td><td style="color: green;">: Rs {{currentData['paid_amount']}}</td></tr>
     <tr><td></td><td></td></tr>
-    <tr><td>Remaining amount</td><td style="color: red;">: Rs{{currentData['remaining_amount']}}</td></tr>
+    <tr><td>Remaining amount</td><td style="color: red;">: Rs {{currentData['remaining_amount']}}</td></tr>
+    <tr *ngIf="currentData['remaining_amount'] < 0"><td>Exceed Payment</td><td style="color: green;">: Rs {{currentData['paid_amount'] - currentData['billed_amount'] }}</td></tr>
   </table>
 
 
