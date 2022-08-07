@@ -11,6 +11,7 @@ import { ListComponent } from './residency/list/list.component';
 import { CreateComponent } from './residency/create/create.component';
 import { PaymentStatusComponent } from './residency/payment-status/payment-status.component';
 import { ReceivePaymentComponent } from './residency/receive-payment/receive-payment.component';
+import { GenerateBillForAllComponent } from './residency/generate-bill-for-all/generate-bill-for-all.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ReceivePaymentComponent } from './residency/receive-payment/receive-pay
     ListComponent,
     CreateComponent,
     PaymentStatusComponent,
-    ReceivePaymentComponent
+    ReceivePaymentComponent,
+    GenerateBillForAllComponent
   ],
   imports: [
     CommonModule,

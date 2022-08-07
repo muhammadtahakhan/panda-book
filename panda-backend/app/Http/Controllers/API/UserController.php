@@ -166,6 +166,7 @@ public $successStatus = 200;
         if (request()->has('relationship')) {         $input['relationship'] = $request->input('relationship'); }
         if (request()->has('iban')) {                 $input['iban'] = $request->input('iban'); }
         if (request()->has('relative_uin')) {         $input['relative_uin'] = $request->input('relative_uin'); }
+
         $user = User::create($input);
         // $success['token'] =  $user->createToken('MyApp')->accessToken;
         $success['name'] =  $user->name;

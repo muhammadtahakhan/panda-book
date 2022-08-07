@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/shared/service/auth.service';
 import { DialogComponent } from 'src/app/shared/_components/dialog/dialog.component';
 import { GlobalEventService } from 'src/app/shared/_helpers/global-event.service';
 import { CreateComponent } from '../create/create.component';
+import { GenerateBillForAllComponent } from '../generate-bill-for-all/generate-bill-for-all.component';
 import { PaymentStatusComponent } from '../payment-status/payment-status.component';
 import { ReceivePaymentComponent } from '../receive-payment/receive-payment.component';
 
@@ -144,6 +145,18 @@ export class ListComponent implements OnInit {
       dialogRef.afterClosed().pipe(takeUntil(this._onDestroy)).subscribe(result => {
        if(result) {this.regenerateOtp(item);}
 
+      });
+    }
+
+    openDialogBillForAll(data = {}) {
+      // console.log(data);
+      const dialogRef = this.dialog.open(GenerateBillForAllComponent, {
+
+        data});
+
+      dialogRef.afterClosed().subscribe(result => {
+        // console.log(`Dialog result: ${result}`);
+        this.getList();
       });
     }
 

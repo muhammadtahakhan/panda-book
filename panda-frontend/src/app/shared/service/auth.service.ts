@@ -191,7 +191,7 @@ export class AuthService extends BaseService {
  }
 
    createoOrUpdateAppartments(data: any): Observable<any> {
-    debugger;
+
     if(data.id){
       return this.http.put(this.url+'appartment',  data, this.httpOptions);
     }else{
@@ -202,6 +202,11 @@ export class AuthService extends BaseService {
  receivePayment(data: {}){
   return  this.http.post(this.url+'payment',  data, )
   }
+
+  generateBillForAll(data: {}){
+    return  this.http.post(this.url+'bill_for_all',  data)
+    }
+
 
 
 }

@@ -62,6 +62,15 @@ class AppartmentController extends BaseController
         if (request()->has('email')) {    $input['email'] = $request->input('email'); }
         if (request()->has('mobile')) {    $input['mobile'] = $request->input('mobile'); }
         if (request()->has('address')) {    $input['address'] = $request->input('address'); }
+
+        if (request()->has('car')) {    $input['car'] = $request->input('car'); }
+        if (request()->has('tenant_name')) {    $input['tenant_name'] = $request->input('tenant_name'); }
+        if (request()->has('tenant_mobile')) {    $input['tenant_mobile'] = $request->input('tenant_mobile'); }
+        if (request()->has('tenant_car')) {    $input['tenant_car'] = $request->input('tenant_car'); }
+        if (request()->has('tenant_two_name')) {    $input['tenant_two_name'] = $request->input('tenant_two_name'); }
+        if (request()->has('tenant_two_mobile')) {    $input['tenant_two_mobile'] = $request->input('tenant_two_mobile'); }
+        if (request()->has('tenant_two_car')) {    $input['tenant_two_car'] = $request->input('tenant_two_car'); }
+
         $input['user_type'] = "appartment";
         $user = User::create($input);
         // $user = User::updateOrCreate(['id'=>$input['id']],$input);
