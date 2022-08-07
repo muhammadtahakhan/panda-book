@@ -75,10 +75,14 @@ class PaymentController extends  BaseController
     }
     public function status($id) {
         try{
-                $billed_amount = Bill::where('party_id', $id)->sum('amount');
-                $paid_amount = Payment::where('party_id', $id)->sum('paid_amount');
-                $remaining_amount  = $billed_amount - $paid_amount;
-                return $this->sendResponse([$billed_amount, $paid_amount, $remaining_amount], 'billed amount and paid amount');
+
+
+
+            $data['billed_amount'] = Bill::where('party_id', $id)->sum('amount');
+            $data['paid_amount'] = Payment::where('party_id', $id)->sum('paid_amount');
+            $data['remaining_amount'] =  $data['billed_amount'] -  $data['paid_amount'];
+            $data['party_id'] =  $id;
+                return $this->sendResponse($data, 'billed amount and paid amount');
 
         } catch(\Exception $e) {
             return $this->sendError($e->getMessage(), []);

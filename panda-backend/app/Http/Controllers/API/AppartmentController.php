@@ -26,6 +26,7 @@ class AppartmentController extends BaseController
                     $query = $query->orWhere('email', 'LIKE', "%$search%");
                     $query = $query->orWhere('name', 'LIKE', "%$search%");
                     $query = $query->orWhere('address', 'LIKE', "%$search%");
+                    $query = $query->orWhere('mobile', 'LIKE', "%$search%");
 
                 });
             }
@@ -63,6 +64,8 @@ class AppartmentController extends BaseController
         if (request()->has('address')) {    $input['address'] = $request->input('address'); }
         $input['user_type'] = "appartment";
         $user = User::create($input);
+        // $user = User::updateOrCreate(['id'=>$input['id']],$input);
+
 
         return $this->sendResponse($user, 'Appartment Updated Successfully');
     } catch(\Exception $e) {
@@ -74,40 +77,30 @@ class AppartmentController extends BaseController
     public function update_details(Request $request)
     {
         try {
+            $validator = Validator::make($request->all(), [
+                'id' => 'exists:users,id',
+                'email' => 'required|email|exists:users',
+                'mobile' => 'required',
+                'address' => 'required',
 
-            $userDetails = Auth::user();
-            if( $userDetails->user_type == "admin"){
-                    $validator = Validator::make($request->all(), [
-                        'id' => 'required|exists:users',
-                    ]);
-                if ($validator->fails()) {
-                        return response()->json(['error'=>$validator->errors()], 422);
-                    }
-                    $user = User::find($request->input('id'));
-                    $userBeforeUpdate = unserialize(serialize($user));
-            }else{
-                $user = User::find($userDetails->id);
-                $userBeforeUpdate = unserialize(serialize($user));
+            ]);
+         if ($validator->fails()) {
+                return response()->json(['error'=>$validator->errors()], 422);
             }
 
-            // dd($request);
-            if (request()->has('name')) {   $user->name=$request->input('name'); }
-            if (request()->has('email')) {   $user->email=$request->input('email'); }
-            if (request()->has('mobile')) {   $user->mobile=$request->input('mobile'); }
-            if (request()->has('address')) {   $user->address=$request->input('address'); }
-
-            // $user->save();  // Update the data
-            if( $user->save()) {
-                return $this->sendResponse($user, 'Appartment Updated Successfully');
+            $id = $request['id'];
+            unset($request['email']);
+            $data = User::findOrFail($request['id']);
+            $data = $data->update($request->all());
+            if($data) {
+                return $this->sendResponse($data, 'Residency Updated Successfully');
             }
             else {
-                return $this->sendError([], 'Appartment Updated Successfully');
+                return $this->sendError($data, 'Residency can not update Successfully');
             }
-
-            return response()->json(['success' => $user], $this->successStatus);
-         } catch(\Exception $e) {
-            return $this->sendError([], $e->getMessage());
-         }
+        } catch(\Exception $e) {
+            return $this->sendError($e->getMessage(), []);
+        }
     }
 
     public function delete(Request $request) {
