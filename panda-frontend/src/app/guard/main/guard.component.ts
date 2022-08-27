@@ -25,7 +25,7 @@ export class GuardComponent implements OnInit {
     this.auth.getCurrrentUserData().subscribe({
       next:(res)=>{
 
-        if(res.user_type != 'guard') {
+        if(res.user_type != 'guard' && res.user_type != 'admin') {
             this.logout();
         }
 

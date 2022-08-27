@@ -110,6 +110,7 @@ export class CreateComponent implements OnInit {
       tenant_two_name: [{value:this.currentData?.tenant_two_name, disabled:false}, Validators.compose([ ])],
       tenant_two_mobile: [{value:this.currentData?.tenant_two_mobile, disabled:false}, Validators.compose([ ])],
       tenant_two_car: [{value:this.currentData?.tenant_two_car, disabled:false}, Validators.compose([ ])],
+      payable_amount: [{value:this.currentData?.payable_amount, disabled:false}, Validators.compose([ ])],
 
     });
   }

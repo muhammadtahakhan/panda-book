@@ -103,11 +103,22 @@
             </mat-form-field>
            </div>
            <div>
+
             <mat-form-field appearance="standard">
                 <mat-label>Tenant two car </mat-label>
-                <input maxlength="30" matInput  placeholder="Enter your "  formControlName="tenant_two_car">
+                <input  maxlength="30" matInput  placeholder="Enter your "  formControlName="tenant_two_car">
                 <mat-error *ngIf="form_error('tenant_two_car', 'required')">tenant_two_car is <strong>required</strong></mat-error>
                 <mat-error *ngIf="form_error('tenant_two_car', 'pattern')">Special Character not allowed </mat-error>
+                <!-- <mat-hint></mat-hint> -->
+            </mat-form-field>
+           </div>
+
+           <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Payable Amount (Opening Bill) </mat-label>
+                <input type="number" maxlength="30" matInput  placeholder="Enter initial Bill "  formControlName="payable_amount">
+                <mat-error *ngIf="form_error('payable_amount', 'required')">payable_amount is <strong>required</strong></mat-error>
+                <mat-error *ngIf="form_error('payable_amount', 'pattern')">Special Character not allowed </mat-error>
                 <!-- <mat-hint></mat-hint> -->
             </mat-form-field>
            </div>
