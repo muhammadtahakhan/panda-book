@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\models\Ukn;
+use App\models\Bill;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\API\BaseController as BaseController;
@@ -45,6 +46,7 @@ class AppartmentController extends BaseController
      */
     public function register(Request $request)
     {
+        \DB::beginTransaction();
         try {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
@@ -72,12 +74,20 @@ class AppartmentController extends BaseController
         if (request()->has('tenant_two_car')) {    $input['tenant_two_car'] = $request->input('tenant_two_car'); }
 
         $input['user_type'] = "appartment";
-        $user = User::create($input);
-        // $user = User::updateOrCreate(['id'=>$input['id']],$input);
 
 
+            $user = User::create($input);
+            if($request->input('payable_amount') !== null && $request->input('payable_amount') > 0){
+                $data['amount'] = $request->input('payable_amount');
+                $data['party_id'] = $user->id;
+                $data['description'] = "Initial Payable amount or opening Bill";
+                $data = Bill::create($data);
+            }
+
+            \DB::commit();
         return $this->sendResponse($user, 'Appartment Updated Successfully');
     } catch(\Exception $e) {
+        \DB::rollback();
         return $this->sendError([], $e->getMessage());
      }
     }
