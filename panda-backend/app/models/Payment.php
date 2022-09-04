@@ -12,7 +12,7 @@ class Payment extends Model
     use SoftDeletes, CreatedUpdatedBy;
     protected $table = 'payments';
     protected $fillable = [
-        'paid_amount', 'bill_id', 'party_id'
+        'paid_amount', 'bill_id', 'party_id', 'description'
     ];
 
     public function party()

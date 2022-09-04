@@ -76,8 +76,6 @@ class PaymentController extends  BaseController
     public function status($id) {
         try{
 
-
-
             $data['billed_amount'] = Bill::where('party_id', $id)->sum('amount');
             $data['paid_amount'] = Payment::where('party_id', $id)->sum('paid_amount');
             $data['remaining_amount'] =  $data['billed_amount'] -  $data['paid_amount'];

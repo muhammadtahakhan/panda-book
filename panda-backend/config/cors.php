@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['POST', 'GET', 'DELETE', 'PUT', '*'],
 
-    'allowed_origins' => ['http://localhost:8080', 'http://localhost:4200'],
+    'allowed_origins' => ['http://localhost:8080', 'http://localhost:4200', 'http://202.182.106.2'],
 
     'allowed_origins_patterns' => ['Google  '],
 

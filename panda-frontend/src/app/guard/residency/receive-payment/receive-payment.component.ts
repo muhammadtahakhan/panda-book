@@ -13,7 +13,7 @@ import { PaymentStatusComponent } from '../payment-status/payment-status.compone
   styleUrls: ['./receive-payment.component.css']
 })
 export class ReceivePaymentComponent implements OnInit {
-
+  descriptionList: string[] = ['Jan', 'Feb', 'March', 'April', 'May', 'Jun', 'July', 'August', 'Sep', 'OCt', 'Nov', 'Dec'];
   private _onDestroy = new Subject<void>();
   returnUrl: string;
   rForm: FormGroup;
@@ -49,13 +49,14 @@ export class ReceivePaymentComponent implements OnInit {
     return formBuilder.group({
 
       paid_amount: [this.data['payment']['remaining_amount'] || null],
+      description: [null],
 
 
     });
   }
 
   onSubmit(){
-    let data = { "paid_amount":this.rForm.value['paid_amount'],  "party_id": this.data['payment']['party_id'] }
+    let data = { "paid_amount":this.rForm.value['paid_amount'], "description":this.rForm.value['description'].toString(), "party_id": this.data['payment']['party_id'] }
 
       if(this.rForm.valid){
         this.spinner.show();
