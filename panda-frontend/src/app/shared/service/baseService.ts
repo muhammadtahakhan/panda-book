@@ -6,7 +6,7 @@ import { environment } from "src/environments/environment";
 
 export class BaseService {
 
-    protected url = environment.url;
+    public url = environment.url;
 
     httpOptions = {
         headers: new HttpHeaders({
@@ -15,11 +15,11 @@ export class BaseService {
           // 'Authorization': 'my-auth-token'
         })
       };
-      
+
     constructor() {
-        
+
       }
-        
-      
-  
+
+
+
   }

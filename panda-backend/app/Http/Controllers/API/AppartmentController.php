@@ -10,6 +10,8 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Validator;
+use App\Exports\UsersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 
 class AppartmentController extends BaseController
@@ -136,5 +138,11 @@ class AppartmentController extends BaseController
         } catch(\Exception $e) {
             return $this->sendError([], $e->getMessage());
         }
+    }
+
+    public function export()
+    {
+        $file = Excel::store(new UsersExport, 'public/exports/appartments.xlsx');
+        return $this->sendResponse('exports/appartments.xlsx', 'Appartment Deleted Successfully');
     }
 }

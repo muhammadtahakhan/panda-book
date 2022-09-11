@@ -65,6 +65,7 @@ Route::group(['middleware' => ['json.response', 'auth:api']], function(){
     Route::post('appartment', 'API\AppartmentController@register');
     Route::put('appartment', 'API\AppartmentController@update_details');
     Route::delete('appartment', 'API\AppartmentController@delete');
+    Route::get('appartment/export', 'API\AppartmentController@export');
 
     // Payment History
     Route::get('payment/history/{id}', 'API\PaymentController@history');

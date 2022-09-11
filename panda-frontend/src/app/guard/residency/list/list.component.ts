@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -37,7 +38,7 @@ export class ListComponent implements OnInit {
     set search(value: string) { this._search = value; this.getList({pageIndex: 0, pageSize: this.pageSize});  }
     // ----------------------------------------------work for search end
 
-  constructor(private globalEvents: GlobalEventService,public dialog: MatDialog, private route: ActivatedRoute,private router: Router,private spinner: NgxSpinnerService, public auth:AuthService) { }
+  constructor(private http: HttpClient, private globalEvents: GlobalEventService,public dialog: MatDialog, private route: ActivatedRoute,private router: Router,private spinner: NgxSpinnerService, public auth:AuthService) { }
 
   ngOnInit(): void {
 
@@ -261,6 +262,16 @@ export class ListComponent implements OnInit {
     }
   }
 
+  Dowload(){
+    this.auth.generateExport().subscribe({
+      next: (res)=>{
+        console.log('generateExport', res);
+        window.open(this.auth.url+'../storage/'+res.data);
+
+      }
+    })
+
+  }
   // -----------------------------------------------Work for data sorting-------------------------
 
   sortData(sort: any ){

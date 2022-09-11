@@ -211,6 +211,14 @@ export class AuthService extends BaseService {
     return  this.http.post(this.url+'bill_for_all',  data)
     }
 
+    generateExport(): Observable<any> {
+
+      return this.http.get(this.url+'appartment/export',  this.httpOptions);
+     }
+
+     downloadFile(): any {
+      return this.http.get('http://localhost:8080/employees/download', {responseType: 'blob'});
+    }
 
 
 }
