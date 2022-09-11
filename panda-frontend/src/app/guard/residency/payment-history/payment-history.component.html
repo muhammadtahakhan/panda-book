@@ -1,0 +1,14 @@
+<div class="card-wrapper" >
+      <mat-card  *ngFor="let item of payments">
+
+
+        <mat-card-content>
+          <p>{{item.created_at | date}}, Amount: {{item.paid_amount}}</p>
+          <p>Description :  {{item.description}} </p>
+        </mat-card-content>
+
+
+      </mat-card>
+
+
+</div>

@@ -276,6 +276,7 @@ export class ListComponent implements OnInit {
       switch (sort.active) {
         case 'name': return this.compare(a['id'], b['id'], isAsc);
         case 'email': return this.compare(a['id'], b['id'], isAsc);
+        case 'balance': return this.compare(a['id'], b['id'], isAsc);
         default: return 0;
       }
     });

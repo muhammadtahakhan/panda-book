@@ -13,7 +13,7 @@ import { PaymentStatusComponent } from '../payment-status/payment-status.compone
   styleUrls: ['./receive-payment.component.css']
 })
 export class ReceivePaymentComponent implements OnInit {
-  descriptionList: string[] = ['Jan', 'Feb', 'March', 'April', 'May', 'Jun', 'July', 'August', 'Sep', 'OCt', 'Nov', 'Dec'];
+  descriptionList: string[] = ['Jan-22', 'Feb-22', 'March-22', 'April-22', 'May-22', 'Jun-22', 'July-22', 'August-22', 'Sep-22', 'Oct-22', 'Nov-22', 'Dec-22'];
   private _onDestroy = new Subject<void>();
   returnUrl: string;
   rForm: FormGroup;

@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TagUserComponent } from 'src/app/administrator/tag-user/tag-user.component';
+import { PaymentHistoryComponent } from '../payment-history/payment-history.component';
 
 @Component({
   selector: 'app-payment-status',
@@ -21,6 +22,14 @@ export class PaymentStatusComponent implements OnInit {
 
   receivePayment(){
     this.dialogRef.close({'action':'receivePayment'});
+  }
+
+  receivePaymentHistory(){
+    const dialogRef = this.dialog.open(PaymentHistoryComponent, {
+      data: this.currentData,
+      panelClass: 'trend-dialog',
+      height: '80%',
+     });
   }
 
 }

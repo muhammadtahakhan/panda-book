@@ -12,6 +12,8 @@ import { CreateComponent } from './residency/create/create.component';
 import { PaymentStatusComponent } from './residency/payment-status/payment-status.component';
 import { ReceivePaymentComponent } from './residency/receive-payment/receive-payment.component';
 import { GenerateBillForAllComponent } from './residency/generate-bill-for-all/generate-bill-for-all.component';
+import { PaymentHistoryComponent } from './residency/payment-history/payment-history.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 @NgModule({
@@ -21,7 +23,8 @@ import { GenerateBillForAllComponent } from './residency/generate-bill-for-all/g
     CreateComponent,
     PaymentStatusComponent,
     ReceivePaymentComponent,
-    GenerateBillForAllComponent
+    GenerateBillForAllComponent,
+    PaymentHistoryComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +34,7 @@ import { GenerateBillForAllComponent } from './residency/generate-bill-for-all/g
     ReactiveFormsModule,
     AngularMaterialModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
   ]
 })
 export class GuardModule { }

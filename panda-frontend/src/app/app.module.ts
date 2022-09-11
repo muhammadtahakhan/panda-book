@@ -25,6 +25,7 @@ import { ResetpasswordComponent } from './resetpassword/resetpassword.component'
 import { RecaptchaFormsModule, RecaptchaModule, RecaptchaSettings, RECAPTCHA_SETTINGS } from 'ng-recaptcha';
 import { environment } from 'src/environments/environment';
 import { DialogComponent } from './shared/_components/dialog/dialog.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 const MY_FORMATS = {
@@ -61,7 +62,6 @@ const MY_FORMATS = {
     NgxSpinnerModule,
     RecaptchaModule,
     RecaptchaFormsModule,
-
 
   ],
   providers: [CookieService,

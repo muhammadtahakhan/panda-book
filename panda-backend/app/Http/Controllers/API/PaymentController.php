@@ -86,4 +86,15 @@ class PaymentController extends  BaseController
             return $this->sendError($e->getMessage(), []);
         }
     }
+
+    public function history($id) {
+        try{
+
+            $data = Payment::where('party_id', $id)->orderBy('created_at', 'DESC')->get();
+                return $this->sendResponse($data, 'Paid amount');
+
+        } catch(\Exception $e) {
+            return $this->sendError($e->getMessage(), []);
+        }
+    }
 }

@@ -30,6 +30,10 @@ export class AuthService extends BaseService {
     return  this.http.get(this.url+'statics')
   }
 
+  getPaymentHistory(id:number){
+    return  this.http.get(this.url+'payment/history/'+id);
+  }
+
   loginPost(data: {}): Observable<any> {
 
     return  this.http.post(this.url+'login',  data, this.httpOptions)
