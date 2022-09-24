@@ -9,11 +9,11 @@ class InvoicesExport implements WithMultipleSheets
 {
     use Exportable;
 
-    protected $year;
 
-    public function __construct(int $year)
+
+    public function __construct()
     {
-        $this->year = $year;
+
     }
 
     /**

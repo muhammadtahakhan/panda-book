@@ -24,8 +24,7 @@ class Reports extends BaseController
 
     public function history()
     {
-
-        $file = Excel::store(new InvoicesExport(2022), 'public/exports/history.xlsx');
+        $file = Excel::store(new InvoicesExport(), 'public/exports/history.xlsx');
         return $this->sendResponse('exports/history.xlsx', 'Appartment History Report Generated Successfully');
     }
 }
