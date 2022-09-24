@@ -192,7 +192,6 @@ export class ListComponent implements OnInit {
         (res:any)=>{
           this.globalEvents.broadcast('serverMsg',res.errorDescription);
 
-
         },
         (error)=>{},
         ()=>{this.spinner.hide();}
@@ -233,8 +232,10 @@ export class ListComponent implements OnInit {
 
     dialogRef.afterClosed().pipe(takeUntil(this._onDestroy)).subscribe(result => {
      if(result && result['action']=='receivePayment') {
-      this.receivePayment(item, residency);
+            this.receivePayment(item, residency);
+     }else{
 
+       this.getList();
      }
 
     });
@@ -247,6 +248,7 @@ export class ListComponent implements OnInit {
   });
 
   dialogRef.afterClosed().pipe(takeUntil(this._onDestroy)).subscribe(result => {
+    this.getList();
    if(result) {}
 
   });

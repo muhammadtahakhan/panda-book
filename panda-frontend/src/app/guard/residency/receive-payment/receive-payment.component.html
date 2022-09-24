@@ -26,16 +26,39 @@
                 <mat-form-field appearance="fill">
                   <mat-label>Description</mat-label>
                   <mat-select formControlName="description" multiple>
-                    <!-- <mat-select-trigger>
-                      {{toppings.value?.[0] || ''}}
-                      <span *ngIf="(toppings.value?.length || 0) > 1" class="example-additional-selection">
-                        (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
-                      </span>
-                    </mat-select-trigger> -->
                     <mat-option *ngFor="let topping of descriptionList" [value]="topping">{{topping}}</mat-option>
                   </mat-select>
                 </mat-form-field>
-              </div>
+                </div>
+
+                <div>
+                  <mat-form-field appearance="fill">
+                    <mat-label>payment_category</mat-label>
+                    <mat-select formControlName="payment_category" multiple>
+                      <mat-option *ngFor="let topping of paymentCategory" [value]="topping">{{topping}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  </div>
+
+                  <div>
+                    <mat-form-field appearance="fill">
+                      <mat-label>payment_type</mat-label>
+                      <mat-select formControlName="payment_type" >
+                        <mat-option *ngFor="let topping of paymentType" [value]="topping">{{topping}}</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                    </div>
+
+
+                      <div *ngIf="rForm.get('payment_type')?.value != 'Cash' ">
+                        <mat-form-field appearance="standard">
+                            <mat-label> Cheque/Transaction Number </mat-label>
+                            <input maxlength="30" matInput type="text"  placeholder="Enter Cheque/Transaction Number"  formControlName="cheque_number">
+                            <mat-error *ngIf="form_error('cheque_number', 'required')">Amount is <strong>required</strong></mat-error>
+                            <mat-error *ngIf="form_error('cheque_number', 'pattern')">Special Character not allowed </mat-error>
+                            <!-- <mat-hint>CNIC</mat-hint> -->
+                        </mat-form-field>
+                      </div>
 
 </div>
 

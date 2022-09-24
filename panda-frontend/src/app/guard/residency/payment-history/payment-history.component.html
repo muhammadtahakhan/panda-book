@@ -1,10 +1,17 @@
 <div class="card-wrapper" >
+    <h2>Bliss Apartment</h2> <br>
+
       <mat-card  *ngFor="let item of payments">
 
 
         <mat-card-content>
-          <p>{{item.created_at | date}}, Amount: {{item.paid_amount}}</p>
-          <p>Description :  {{item.description}} </p>
+          <p><b>Receipt No:</b> {{item.id}}</p>
+          <p><b>Amount:</b> {{item.paid_amount}}</p>
+          <p><b>Payment Date:</b>  {{item.created_at | date}} </p>
+          <p><b>For the Month of :</b>  {{item.description}} </p>
+          <p><b>Payment category :</b>  {{item.payment_category}} </p>
+          <p><b>Payment type :</b>  {{item.payment_type}} </p>
+          <p *ngIf="item.cheque_number"><b>Cheque Number:</b>  {{item.cheque_number}} </p>
         </mat-card-content>
 
 

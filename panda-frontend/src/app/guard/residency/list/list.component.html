@@ -28,6 +28,11 @@
         </a>
       </div>
       <div *ngIf="auth?.currentUser?.user_type == 'admin'" class="my-4" style="float: right;">
+        <a (click)="Dowload()" class="bg-transparent border border-green-500 text-green-500 hover:bg-green-500 hover:text-white text-center py-2 px-4 rounded">
+          Download
+        </a>
+      </div>
+      <div *ngIf="auth?.currentUser?.user_type == 'admin'" class="my-4" style="float: right;">
         <a (click)="openDialog()" class="bg-transparent border border-green-500 text-green-500 hover:bg-green-500 hover:text-white text-center py-2 px-4 rounded">
           Create
         </a>

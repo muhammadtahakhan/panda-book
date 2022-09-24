@@ -14,6 +14,8 @@ import { PaymentStatusComponent } from '../payment-status/payment-status.compone
 })
 export class ReceivePaymentComponent implements OnInit {
   descriptionList: string[] = ['Jan-22', 'Feb-22', 'March-22', 'April-22', 'May-22', 'Jun-22', 'July-22', 'August-22', 'Sep-22', 'Oct-22', 'Nov-22', 'Dec-22'];
+  paymentCategory: string[] = ['Maintenance', 'Color', 'Parking', 'Other']
+  paymentType: string[] = ['Cash', 'Cheque', 'Online']
   private _onDestroy = new Subject<void>();
   returnUrl: string;
   rForm: FormGroup;
@@ -34,6 +36,12 @@ export class ReceivePaymentComponent implements OnInit {
 
   ngOnInit(): void {
     console.log( this.currentData);
+    this.rForm.get('payment_type')?.valueChanges.subscribe({
+      next:(item)=>{
+          // console.log("payment_type",item, this.rForm.get('payment_type')?.value);
+          if(item == 'Cash' ){   this.rForm.get('cheque_number')?.setValue('');   }
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -50,13 +58,23 @@ export class ReceivePaymentComponent implements OnInit {
 
       paid_amount: [this.data['payment']['remaining_amount'] || null],
       description: [null],
+      payment_category: [null],
+      payment_type: [null],
+      cheque_number: [null],
 
 
     });
   }
 
   onSubmit(){
-    let data = { "paid_amount":this.rForm.value['paid_amount'], "description":this.rForm.value['description'].toString(), "party_id": this.data['payment']['party_id'] }
+    let data = {
+      "paid_amount": this.rForm.value['paid_amount'],
+      "description": this.rForm.value['description'].toString(),
+      "party_id": this.data['payment']['party_id'],
+      "payment_category": this.rForm.value['payment_category'].toString(),
+      "payment_type": this.rForm.value['payment_type'].toString(),
+      "cheque_number":this.rForm.value['cheque_number'].toString()
+    }
 
       if(this.rForm.valid){
         this.spinner.show();
