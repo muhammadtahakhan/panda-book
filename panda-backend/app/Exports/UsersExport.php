@@ -31,7 +31,7 @@ class UsersExport implements FromQuery, WithHeadings, WithMapping
         return [
             'Email',
             'Name',
-            'Address',
+            'Residency',
             'Balance'
         ];
     }

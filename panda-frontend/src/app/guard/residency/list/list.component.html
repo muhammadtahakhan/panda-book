@@ -22,20 +22,26 @@
           Generate Bill
         </a>
       </div>
-      <div *ngIf="auth?.currentUser?.user_type == 'admin'" class="my-4" style="float: right;">
+      <!-- <div *ngIf="auth?.currentUser?.user_type == 'admin'" class="my-4" style="float: right;">
         <a (click)="Dowload()" class="bg-transparent border border-green-500 text-green-500 hover:bg-green-500 hover:text-white text-center py-2 px-4 rounded">
           Download
         </a>
-      </div>
-      <div *ngIf="auth?.currentUser?.user_type == 'admin'" class="my-4" style="float: right;">
-        <a (click)="Dowload()" class="bg-transparent border border-green-500 text-green-500 hover:bg-green-500 hover:text-white text-center py-2 px-4 rounded">
-          Download
-        </a>
-      </div>
+      </div> -->
+
       <div *ngIf="auth?.currentUser?.user_type == 'admin'" class="my-4" style="float: right;">
         <a (click)="openDialog()" class="bg-transparent border border-green-500 text-green-500 hover:bg-green-500 hover:text-white text-center py-2 px-4 rounded">
           Create
         </a>
+      </div>
+
+      <div *ngIf="auth?.currentUser?.user_type == 'admin'" class="my-6" >
+          <mat-form-field >
+            <mat-label>Reports</mat-label>
+            <mat-select (selectionChange)="Dowload($event)"  >
+              <mat-select> </mat-select>
+              <mat-option *ngFor="let item of reports" [value]="item">{{item}}</mat-option>
+            </mat-select>
+          </mat-form-field>
       </div>
 
 

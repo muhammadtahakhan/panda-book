@@ -19,7 +19,7 @@ import { ReceivePaymentComponent } from '../receive-payment/receive-payment.comp
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-
+  reports = ['Apartment', 'History']
 
   private _onDestroy = new Subject<void>();
 
@@ -264,14 +264,36 @@ export class ListComponent implements OnInit {
     }
   }
 
-  Dowload(){
-    this.auth.generateExport().subscribe({
-      next: (res)=>{
-        console.log('generateExport', res);
-        window.open(this.auth.url+'../storage/'+res.data);
+  Dowload(report:any){
 
+    switch(report.value) {
+      case 'Apartment': {
+          this.auth.generateExport().subscribe({
+            next: (res)=>{
+              console.log('generateExport', res);
+              window.open(this.auth.url+'../storage/'+res.data);
+
+            }
+          })
+         break;
       }
-    })
+      case 'History': {
+        this.auth.generateHistoryExport().subscribe({
+          next: (res)=>{
+            console.log('generateExport', res);
+            window.open(this.auth.url+'../storage/'+res.data);
+
+          }
+        })
+         break;
+      }
+      default: {
+         //statements;
+         break;
+      }
+   }
+
+
 
   }
   // -----------------------------------------------Work for data sorting-------------------------
