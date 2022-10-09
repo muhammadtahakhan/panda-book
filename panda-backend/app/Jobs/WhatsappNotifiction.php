@@ -41,7 +41,7 @@ class WhatsappNotifiction implements ShouldQueue
     {
         print_r($this->payment_id);
        $payment = Payment::find($this->payment_id)->get();
-       $response = Http::withBasicAuth('AC365ad1115c1683f8afe5b1221fe7d5e1', '21287ffe0c01cef6794227adfaa9327d')->asForm()->post('https://api.twilio.com/2010-04-01/Accounts/AC365ad1115c1683f8afe5b1221fe7d5e1/Messages.json', [
+       $response = Http::withBasicAuth(env('TWILIO_SID'), env('TWILIO_TOKEN'))->asForm()->post(env('TWILIO_URL'), [
         'To' => 'whatsapp:+923150208667',
         'From' => 'whatsapp:+14155238886',
         'Body' => 'Your Yummy Cupcakes Company order of 1 dozen frosted cupcakes has shipped and ',
