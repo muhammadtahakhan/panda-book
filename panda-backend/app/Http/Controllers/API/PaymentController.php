@@ -10,6 +10,7 @@ use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\API\BaseController as BaseController;
 use Validator;
+use App\Jobs\WhatsappNotifiction;
 class PaymentController extends  BaseController
 {
     public function create(Request $request) {
@@ -25,6 +26,7 @@ class PaymentController extends  BaseController
         $data            = $request->all();
         $data = Payment::create($data);
         if($data) {
+            WhatsappNotifiction::dispatch($data->id);
             return $this->sendResponse($data, 'Payment Received Successfully');
         }
         else {
