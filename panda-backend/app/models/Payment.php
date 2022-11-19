@@ -18,6 +18,6 @@ class Payment extends Model
 
     public function party()
     {
-     return $this->belongsTo('App\User', 'id', 'party_id');
+     return $this->belongsTo('App\User', 'party_id', 'id');
     }
 }

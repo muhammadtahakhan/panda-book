@@ -22,7 +22,7 @@ class AppartmentController extends BaseController
             $pageIndex =  $request->query->get('page_index', 0);
             $search    =  $request->query->get('search');
 
-            $data = User::orderBy('id', 'DESC')->where('user_type', 'appartment');
+            $data = User::orderBy('address', 'ASC')->where('user_type', 'appartment');
             if($search) {
                 $data = $data->where(function($query) use($search){
 

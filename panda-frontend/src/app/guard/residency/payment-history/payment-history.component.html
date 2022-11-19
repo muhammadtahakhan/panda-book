@@ -6,6 +6,8 @@
 
         <mat-card-content>
           <p><b>Receipt No:</b> {{item.id}}</p>
+          <p><b>Apartment No:</b> {{item.party.address}}</p>
+          <p><b>Apartment Owner:</b> {{item.party.name}}</p>
           <p><b>Amount:</b> {{item.paid_amount}}</p>
           <p><b>Payment Date:</b>  {{item.created_at | date}} </p>
           <p><b>For the Month of :</b>  {{item.description}} </p>

@@ -39,6 +39,10 @@ class WhatsappNotifiction implements ShouldQueue
      */
     public function handle()
     {
+       $TWILIO_SID = env('TWILIO_SID');
+       $TWILIO_TOKEN = env('TWILIO_TOKEN');
+       $TWILIO_URL = env('TWILIO_URL');
+
         print_r($this->payment_id);
        $payment = Payment::find($this->payment_id)->get();
        $response = Http::withBasicAuth(env('TWILIO_SID'), env('TWILIO_TOKEN'))->asForm()->post(env('TWILIO_URL'), [

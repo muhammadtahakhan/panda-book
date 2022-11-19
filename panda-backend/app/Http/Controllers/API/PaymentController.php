@@ -92,7 +92,7 @@ class PaymentController extends  BaseController
     public function history($id) {
         try{
 
-            $data = Payment::where('party_id', $id)->orderBy('created_at', 'DESC')->get();
+            $data = Payment::with('party')->where('party_id', $id)->orderBy('created_at', 'DESC')->get();
                 return $this->sendResponse($data, 'Paid amount');
 
         } catch(\Exception $e) {
