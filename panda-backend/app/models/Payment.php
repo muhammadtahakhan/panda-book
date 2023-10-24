@@ -20,4 +20,9 @@ class Payment extends Model
     {
      return $this->belongsTo('App\User', 'party_id', 'id');
     }
+
+    public function bill()
+    {
+     return $this->belongsTo('App\models\Bill', 'bill_id', 'id');
+    }
 }

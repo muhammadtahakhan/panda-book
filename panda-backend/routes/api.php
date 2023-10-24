@@ -79,4 +79,7 @@ Route::group(['middleware' => ['json.response', 'auth:api']], function(){
     // Report
     Route::get('appartment/export', 'API\Reports@export');
     Route::get('report/history', 'API\Reports@history');
+
+    Route::apiResource('sms', 'API\SmsController');
+    Route::get('sms/{id}/status', 'API\SmsController@status');
 });

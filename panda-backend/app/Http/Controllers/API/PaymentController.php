@@ -26,7 +26,7 @@ class PaymentController extends  BaseController
         $data            = $request->all();
         $data = Payment::create($data);
         if($data) {
-            WhatsappNotifiction::dispatch($data->id);
+            // WhatsappNotifiction::dispatch($data->id);
             return $this->sendResponse($data, 'Payment Received Successfully');
         }
         else {

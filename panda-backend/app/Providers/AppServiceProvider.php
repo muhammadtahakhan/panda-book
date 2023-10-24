@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Laravel\Passport\Passport;
+use App\Observers\PaymentObserver;
+use App\models\Payment;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -26,5 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
        
         Passport::routes();
+
+        Payment::observe(PaymentObserver::class);
     }
 }
